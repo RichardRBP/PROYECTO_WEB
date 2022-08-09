@@ -2,7 +2,6 @@ package com.ingenieriaweb.springboot.app.models.service;
 
 import com.ingenieriaweb.springboot.app.models.entity.Curso;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
-import com.ingenieriaweb.springboot.app.models.entity.ResponsableAlumno;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,19 +36,6 @@ public interface IProfesorService {
     public void saveCurso(Curso curso);
 
     public void deleteC(Long id);
-
-    //Responsable Alumno
-    public List<ResponsableAlumno> findByApellidoResponsable(String term);
-
-    public List<ResponsableAlumno> findAllR();
-
-    public Page<ResponsableAlumno> findAllR(Pageable pageable);
-
-    public ResponsableAlumno findOneR(Long id);
-
-    public void saveResponsable(ResponsableAlumno responsable_alumno);
-
-    public void deleteR(Long id);
 
     //Tarifa
 

@@ -2,11 +2,9 @@ package com.ingenieriaweb.springboot.app.models.service;
 
 import com.ingenieriaweb.springboot.app.models.dao.ICursoDao;
 import com.ingenieriaweb.springboot.app.models.dao.IProfesorDao;
-import com.ingenieriaweb.springboot.app.models.dao.IResponsableADao;
 import com.ingenieriaweb.springboot.app.models.dao.ITarifaDao;
 import com.ingenieriaweb.springboot.app.models.entity.Curso;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
-import com.ingenieriaweb.springboot.app.models.entity.ResponsableAlumno;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,9 +23,6 @@ public class ProfesorServiceImpl implements IProfesorService {
 
     @Autowired
     private ICursoDao cursoDao;
-
-    @Autowired
-    private IResponsableADao responsableADao;
 
     @Autowired
     private ITarifaDao tarifaDao;
@@ -97,41 +92,6 @@ public class ProfesorServiceImpl implements IProfesorService {
     public void deleteC(Long id) {
         cursoDao.deleteById(id);
     }
-
-
-    // Responsable Alumno
-
-    @Override
-    public List<ResponsableAlumno> findByApellidoResponsable(String term) {
-        // TODO Auto-generated method stub
-        return responsableADao.findByApellidoLikeIgnoreCase("%" + term + "%");
-    }
-
-    @Override
-    public List<ResponsableAlumno> findAllR() {
-        return (List<ResponsableAlumno>) responsableADao.findAll();
-    }
-
-    @Override
-    public Page<ResponsableAlumno> findAllR(Pageable pageable) {
-        return responsableADao.findAll(pageable);
-    }
-
-    @Override
-    public ResponsableAlumno findOneR(Long id) {
-        return responsableADao.findById(id).orElse(null);
-    }
-
-    @Override
-    public void saveResponsable(ResponsableAlumno responsable) {
-        responsableADao.save(responsable);
-    }
-
-    @Override
-    public void deleteR(Long id) {
-        responsableADao.deleteById(id);
-    }
-
 
     //Tarifa
 
