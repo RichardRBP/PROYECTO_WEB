@@ -17,10 +17,10 @@ public class Area {
     @NotEmpty
     private String area;
 
-    //crear una relacion uno a uno de tipo cascade con la tabla areas
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_aula", referencedColumnName = "id")
     private Aula aula;
+    
 
     public Aula getAula() {
         return aula;
