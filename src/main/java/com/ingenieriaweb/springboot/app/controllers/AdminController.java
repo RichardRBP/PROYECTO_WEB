@@ -1,0 +1,18 @@
+package com.ingenieriaweb.springboot.app.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/app")
+public class AdminController {
+	
+	@GetMapping({ "/", "/admin"}) //central-administrador
+	public String admin(Model model) {
+		model.addAttribute("admin", "BIENVENIDO");
+		return "admin";
+	}
+
+}
