@@ -1,5 +1,11 @@
 /* Populate tables */
 
+-- insert into aulas
+insert into aulas (aula) values ('A');
+insert into aulas (aula) values ('B');
+insert into aulas (aula) values ('C');
+insert into aulas (aula) values ('D');
+
 INSERT INTO cursos (etapa,nivel) VALUES ('5to Secundaria',1);
 INSERT INTO cursos (etapa,nivel) VALUES ('Verano',2);
 INSERT INTO cursos (etapa,nivel) VALUES ('Semestral',3);

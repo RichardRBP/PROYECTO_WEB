@@ -17,6 +17,8 @@ public class Aula implements Serializable {
     @NotEmpty
     private String aula;
 
+
+
     public static long getSerialversionuid() {
         return serialVersionUID;
     }

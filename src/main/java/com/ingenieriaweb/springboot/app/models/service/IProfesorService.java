@@ -1,5 +1,6 @@
 package com.ingenieriaweb.springboot.app.models.service;
 
+import com.ingenieriaweb.springboot.app.models.entity.Aula;
 import com.ingenieriaweb.springboot.app.models.entity.Curso;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
@@ -10,6 +11,13 @@ import java.util.List;
 
 public interface IProfesorService {
 
+    // Aula
+    public List<Aula> findByAula(String aula);
+    public List<Aula> findAllA();
+    public Page<Aula> findAllA(Pageable pageable);
+    public Aula findOneA(Long id);
+    public void saveAula(Aula aula);
+    public void delete(Long id);
 
     //  Profesor
     public List<Profesor> findByApellido(String term);
