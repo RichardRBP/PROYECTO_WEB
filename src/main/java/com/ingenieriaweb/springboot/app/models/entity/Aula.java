@@ -17,6 +17,10 @@ public class Aula implements Serializable {
     @NotEmpty
     private String aula;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "area_id")
+    private Area area;
+
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
@@ -35,6 +39,14 @@ public class Aula implements Serializable {
 
     public void setAula(String aula) {
         this.aula = aula;
+    }
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
     }
 
 

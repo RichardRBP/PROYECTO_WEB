@@ -1,8 +1,11 @@
 package com.ingenieriaweb.springboot.app.models.service;
 
+import com.ingenieriaweb.springboot.app.models.dao.IAulaDao;
+import com.ingenieriaweb.springboot.app.models.dao.IAreaDao;
 import com.ingenieriaweb.springboot.app.models.dao.ICursoDao;
 import com.ingenieriaweb.springboot.app.models.dao.IProfesorDao;
 import com.ingenieriaweb.springboot.app.models.dao.ITarifaDao;
+import com.ingenieriaweb.springboot.app.models.entity.Aula;
 import com.ingenieriaweb.springboot.app.models.entity.Curso;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
@@ -30,6 +33,44 @@ public class ProfesorServiceImpl implements IProfesorService {
     @Autowired
     private IAreaDao areaDao;
 
+    @Autowired
+    private IAulaDao aulaDao;
+
+    //Aula
+
+    @Override
+    public List<Aula> findByAula(String term) {
+        // TODO Auto-generated method stub
+        return aulaDao.findByAulaLikeIgnoreCase("%" + term + "%");
+    }
+
+    @Override
+    public List<Aula> findAllA() {
+        // TODO Auto-generated method stub
+        return (List<Aula>) aulaDao.findAll();
+    }
+
+    @Override
+    public Page<Aula> findAllA(Pageable pageable) {
+        return aulaDao.findAll(pageable);
+    }
+
+    @Override
+    public Aula findOneA(Long id) {
+        return aulaDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveAula(Aula aula) {
+        aulaDao.save(aula);
+    }
+
+    @Override
+    public void deleteA(Long id) {
+        aulaDao.deleteById(id);
+    }
+
+    //Profesor
 
     @Override
     public List<Profesor> findByApellido(String term) {
@@ -138,17 +179,17 @@ public class ProfesorServiceImpl implements IProfesorService {
     }
 
     @Override
-    public List<Area> findAllA() {
+    public List<Area> findAllAr() {
         return (List<Area>) areaDao.findAll();
     }
 
     @Override
-    public Page<Area> findAllA(Pageable pageable) {
+    public Page<Area> findAllAr(Pageable pageable) {
         return areaDao.findAll(pageable);
     }
 
     @Override
-    public Area findOneA(Long id) {
+    public Area findOneAr(Long id) {
         return areaDao.findById(id).orElse(null);
     }
 
@@ -158,7 +199,7 @@ public class ProfesorServiceImpl implements IProfesorService {
     }
 
     @Override
-    public void deleteA(Long id) {
+    public void deleteAr(Long id) {
         areaDao.deleteById(id);
     }
 

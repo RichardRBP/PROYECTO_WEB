@@ -34,7 +34,7 @@ public class AreaController {
     @GetMapping(value = "/listar")
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         Pageable pageRequest = PageRequest.of(page, 4);
-        Page<Area> areas = profesorService.findAllA(pageRequest);
+        Page<Area> areas = profesorService.findAllAr(pageRequest);
         PageRender<Area> pageRender = new PageRender<Area>("/area/listar", areas);
         model.addAttribute("titulo", "Listado de Areas");
         model.addAttribute("areas", areas);
@@ -64,7 +64,7 @@ public class AreaController {
     @RequestMapping(value = "/eliminar/{id}")
     public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
         if (id > 0) {
-            profesorService.deleteA(id);
+            profesorService.deleteAr(id);
             flash.addFlashAttribute("success", "El area fue eliminado con exito");
         }
         return "redirect:/area/listar";

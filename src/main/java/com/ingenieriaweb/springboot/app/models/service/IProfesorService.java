@@ -1,5 +1,7 @@
 package com.ingenieriaweb.springboot.app.models.service;
 
+import com.ingenieriaweb.springboot.app.models.entity.Aula;
+import com.ingenieriaweb.springboot.app.models.entity.Area;
 import com.ingenieriaweb.springboot.app.models.entity.Curso;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
@@ -10,6 +12,18 @@ import java.util.List;
 
 public interface IProfesorService {
 
+    // Aula
+    public List<Aula> findByAula(String aula);
+
+    public List<Aula> findAllA();
+
+    public Page<Aula> findAllA(Pageable pageable);
+
+    public Aula findOneA(Long id);
+
+    public void saveAula(Aula aula);
+
+    public void deleteA(Long id);
 
     //  Profesor
     public List<Profesor> findByApellido(String term);
@@ -55,14 +69,14 @@ public interface IProfesorService {
     //Area
     public List<Area> findByArea(String term);
 
-    public List<Area> findAllA();
+    public List<Area> findAllAr();
 
-    public Page<Area> findAllA(Pageable pageable);
+    public Page<Area> findAllAr(Pageable pageable);
 
-    public Area findOneA(Long id);
+    public Area findOneAr(Long id);
 
     public void saveArea(Area area);
 
-    public void deleteA(Long id);
+    public void deleteAr(Long id);
 
 }
