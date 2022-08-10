@@ -27,6 +27,9 @@ public class ProfesorServiceImpl implements IProfesorService {
     @Autowired
     private ITarifaDao tarifaDao;
 
+    @Autowired
+    private IAreaDao areaDao;
+
 
     @Override
     public List<Profesor> findByApellido(String term) {
@@ -127,6 +130,37 @@ public class ProfesorServiceImpl implements IProfesorService {
     }
 
     //Area
+
+    @Override
+    public List<Area> findByArea(String term) {
+        // TODO Auto-generated method stub
+        return areaDao.findByAreaLikeIgnoreCase("%" + term + "%");
+    }
+
+    @Override
+    public List<Area> findAllA() {
+        return (List<Area>) areaDao.findAll();
+    }
+
+    @Override
+    public Page<Area> findAllA(Pageable pageable) {
+        return areaDao.findAll(pageable);
+    }
+
+    @Override
+    public Area findOneA(Long id) {
+        return areaDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveArea(Area area) {
+        areaDao.save(area);
+    }
+
+    @Override
+    public void deleteA(Long id) {
+        areaDao.deleteById(id);
+    }
 
 
 }

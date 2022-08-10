@@ -52,6 +52,17 @@ public interface IProfesorService {
     public void deleteT(Long id);
 
 
+    //Area
+    public List<Area> findByArea(String term);
 
+    public List<Area> findAllA();
+
+    public Page<Area> findAllA(Pageable pageable);
+
+    public Area findOneA(Long id);
+
+    public void saveArea(Area area);
+
+    public void deleteA(Long id);
 
 }
