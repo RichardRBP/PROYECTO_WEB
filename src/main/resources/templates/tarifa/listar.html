@@ -6,37 +6,34 @@
 <div class="banner-tarifa">
     <div class="card text-white bg-dark mb-3">
         <div class="card-header">
-            <a href="./2-TarifasR" class="btn btn-primary">Registrar nueva Tarifa</a>
+            <a th:href="@{/tarifa/form}" class="btn btn-primary">Registrar nueva Tarifa</a>
         </div>
         <table class="table table-dark table-hover center">
             <thead>
             <tr>
-                <th>Espacio 01</th>
-                <th>Espacio 02</th>
-                <th>Espacio 03</th>
-                <th>Espacio 04</th>
-                <th>Espacio 05</th>
+                <th>Id</th>
+                <th>nombre</th>
+                <th>Descripcion</th>
+                <th>precio</th>
+                <th>editar</th>
+                <th>eliminar</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Dato01</td>
-                <td>Dato02</td>
-                <td>Dato03</td>
-                <td>Dato04</td>
-                <td>Dato05</td>
-
-            </tr>
-            <tr>
-                <td>Dato01</td>
-                <td>Dato02</td>
-                <td>Dato03</td>
-                <td>Dato04</td>
-                <td>Dato05</td>
-
+            <tr th:each="tarifa: ${tarifas}">
+                <td th:text="${tarifa.id}"></td>
+                <td th:text="${tarifa.nombre}"></td>
+                <td th:text="${tarifa.descripcion}"></td>
+                <td th:text="${tarifa.precio}"></td>
+                <td><a class="btn btn-primary btn-sm"
+                       th:href="@{/tarifa/form/} + ${tarifa.id}" th:text="'editar'"></a></td>
+                <td><a class="btn btn-danger btn-sm"
+                       th:href="@{/tarifa/eliminar/} + ${tarifa.id}" th:text="'eliminar'"
+                       onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
             </tr>
             </tbody>
         </table>
+        <nav th:replace="paginator-nav :: paginator"></nav>
     </div>
 </div>
 <footer th:replace="layout/layout :: footer"></footer>

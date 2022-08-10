@@ -49,6 +49,7 @@ public class AulaController {
 
         Aula aula = new Aula();
         model.put("aula", aula);
+        model.put("areas", profesorService.findAllAr());
         model.put("titulo", "Formulario de Aula");
         return "aula/form";
     }
@@ -69,6 +70,7 @@ public class AulaController {
             return "redirect:/aula/listar";
         }
         model.put("aula", aula);
+        model.put("areas", profesorService.findAllAr());
         model.put("titulo", "Editar Aula");
         return "aula/form";
     }
@@ -78,6 +80,7 @@ public class AulaController {
     public String guardar(@Valid Aula aula, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Aula");
+            model.addAttribute("areas", profesorService.findAllAr());
             return "aula/form";
         }
         String mensajeFlash = (aula.getId() != null) ? "Aula editado con éxito!" : "Aula creado con éxito!";

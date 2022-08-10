@@ -9,10 +9,12 @@ import com.ingenieriaweb.springboot.app.models.entity.Aula;
 import com.ingenieriaweb.springboot.app.models.entity.Curso;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
+import com.ingenieriaweb.springboot.app.models.entity.Area;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -140,32 +142,38 @@ public class ProfesorServiceImpl implements IProfesorService {
     //Tarifa
 
     @Override
+    @Transactional(readOnly = true)
     public List<Tarifa> findByNombre(String term) {
         // TODO Auto-generated method stub
         return tarifaDao.findByNombreLikeIgnoreCase("%" + term + "%");
     }
 
     @Override
+    @Transactional
     public List<Tarifa> findAllT() {
         return (List<Tarifa>) tarifaDao.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Tarifa> findAllT(Pageable pageable) {
         return tarifaDao.findAll(pageable);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Tarifa findOneT(Long id) {
         return tarifaDao.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional
     public void saveTarifa(Tarifa tarifa) {
         tarifaDao.save(tarifa);
     }
 
     @Override
+    @Transactional
     public void deleteT(Long id) {
         tarifaDao.deleteById(id);
     }

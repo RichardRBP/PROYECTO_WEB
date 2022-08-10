@@ -70,7 +70,7 @@ public class TarifaController {
         return "tarifa/form";
     }
 
-    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
+    @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(@Valid Tarifa tarifa, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Tarifa");
@@ -83,8 +83,8 @@ public class TarifaController {
         return "redirect:/tarifa/listar";
     }
 
-    @RequestMapping(value = "/eliminar", method = RequestMethod.GET)
-    public String eliminar(@RequestParam(value = "id") Long id, RedirectAttributes flash) {
+    @RequestMapping(value = "/eliminar/{id}")
+    public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
         if (id > 0) {
             profesorService.deleteT(id);
             flash.addFlashAttribute("success", "Tarifa eliminado con éxito!");
