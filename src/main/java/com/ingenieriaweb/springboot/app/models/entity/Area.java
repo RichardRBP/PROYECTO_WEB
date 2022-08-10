@@ -3,6 +3,7 @@ package com.ingenieriaweb.springboot.app.models.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "areas")
@@ -17,15 +18,23 @@ public class Area {
     @NotEmpty
     private String area;
 
-    @OneToOne(mappedBy = "area")
-    private Aula aula;
-    
-    public Aula getAula() {
-        return aula;
+    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Aula> aulas;
+
+    public String getArea() {
+        return area;
     }
 
-    public void setAula(Aula aula) {
-        this.aula = aula;
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public List<Aula> getAulas() {
+        return aulas;
+    }
+
+    public void setAulas(List<Aula> aulas) {
+        this.aulas = aulas;
     }
 
     public static long getSerialVersionUID() {

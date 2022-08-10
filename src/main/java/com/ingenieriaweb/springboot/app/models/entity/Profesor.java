@@ -34,6 +34,8 @@ public class Profesor implements Serializable {
     @NotEmpty
     private String titulacion;
 
+    private String foto;
+
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
@@ -92,5 +94,13 @@ public class Profesor implements Serializable {
 
     public void setTitulacion(String titulacion) {
         this.titulacion = titulacion;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

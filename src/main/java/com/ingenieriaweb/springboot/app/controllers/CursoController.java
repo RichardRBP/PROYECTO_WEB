@@ -73,7 +73,7 @@ public class CursoController {
         return "curso/form";
     }
 
-    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
+    @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(@Valid Curso curso, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Curso");
@@ -86,8 +86,8 @@ public class CursoController {
         return "redirect:/curso/listar";
     }
 
-    @RequestMapping(value = "/eliminar", method = RequestMethod.GET)
-    public String eliminar(@RequestParam(value = "id") Long id, RedirectAttributes flash) {
+    @RequestMapping(value = "/eliminar/{id}")
+    public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
         if (id > 0) {
             profesorService.deleteC(id);
             flash.addFlashAttribute("success", "Curso eliminado con éxito!");

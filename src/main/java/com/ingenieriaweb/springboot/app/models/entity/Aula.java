@@ -17,8 +17,7 @@ public class Aula implements Serializable {
     @NotEmpty
     private String aula;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "area_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Area area;
 
     public static long getSerialversionuid() {

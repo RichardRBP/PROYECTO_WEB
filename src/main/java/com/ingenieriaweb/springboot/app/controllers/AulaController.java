@@ -35,11 +35,11 @@ public class AulaController {
 
         Pageable pageRequest = PageRequest.of(page, 5);
 
-        Page<Aula> aula = profesorService.findAllA(pageRequest);
+        Page<Aula> aulas = profesorService.findAllA(pageRequest);
 
-        PageRender<Aula> pageRender = new PageRender<Aula>("/aula/listar", aula);
+        PageRender<Aula> pageRender = new PageRender<Aula>("/aula/listar", aulas);
         model.addAttribute("titulo", "Listado de aulas");
-        model.addAttribute("aulas", aula);
+        model.addAttribute("aulas", aulas);
         model.addAttribute("page", pageRender);
         return "aula/listar";
     }
@@ -76,21 +76,21 @@ public class AulaController {
     }
 
 
-    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
+    @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(@Valid Aula aula, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Aula");
             model.addAttribute("areas", profesorService.findAllAr());
-            return "aula/form";
+            return "/aula/form";
         }
         String mensajeFlash = (aula.getId() != null) ? "Aula editado con éxito!" : "Aula creado con éxito!";
         profesorService.saveAula(aula);
         status.setComplete();
         flash.addFlashAttribute("success", mensajeFlash);
-        return "redirect:listar";
+        return "redirect:/aula/listar";
     }
 
-    @RequestMapping(value = "/eliminar")
+    @RequestMapping(value = "/eliminar/{id}")
     public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 
         if (id > 0) {

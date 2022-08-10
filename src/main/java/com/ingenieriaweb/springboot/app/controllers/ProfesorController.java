@@ -17,9 +17,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
 
@@ -108,12 +110,34 @@ public class ProfesorController {
         return "profesor/form";
     }
 
-    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
-    public String guardar(@Valid Profesor profesor, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
+    @PostMapping("/form")
+    public String guardar(@Valid Profesor profesor, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Profesor");
             return "/profesor/form";
         }
+
+        if (!foto.isEmpty()) {
+
+            if (profesor.getId() != null && profesor.getId() > 0 && profesor.getFoto() != null
+                    && profesor.getFoto().length() > 0) {
+
+                uploadFileService.delete(profesor.getFoto());
+            }
+
+            String uniqueFilename = null;
+            try {
+                uniqueFilename = uploadFileService.copy(foto);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            //flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
+
+            profesor.setFoto(uniqueFilename);
+        }
+
         String mensajeFlash = (profesor.getId() != null) ? "Profesor editado con éxito!" : "Profesor creado con éxito!";
         profesorService.saveProfesor(profesor);
         status.setComplete();
@@ -121,8 +145,8 @@ public class ProfesorController {
         return "redirect:/profesor/listar";
     }
 
-    @RequestMapping(value = "/eliminar", method = RequestMethod.GET)
-    public String eliminar(@RequestParam(value = "id") Long id, RedirectAttributes flash) {
+    @RequestMapping(value = "/eliminar/{id}")
+    public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
         if (id > 0) {
             profesorService.deleteP(id);
             flash.addFlashAttribute("success", "Profesor eliminado con éxito!");
