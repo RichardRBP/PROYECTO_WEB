@@ -1,6 +1,7 @@
 package com.ingenieriaweb.springboot.app.models.service;
 
 import com.ingenieriaweb.springboot.app.models.entity.Aula;
+import com.ingenieriaweb.springboot.app.models.entity.Area;
 import com.ingenieriaweb.springboot.app.models.entity.Curso;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
@@ -65,6 +66,17 @@ public interface IProfesorService {
     public void deleteT(Long id);
 
 
+    //Area
+    public List<Area> findByArea(String term);
 
+    public List<Area> findAllAr();
+
+    public Page<Area> findAllAr(Pageable pageable);
+
+    public Area findOneAr(Long id);
+
+    public void saveArea(Area area);
+
+    public void deleteAr(Long id);
 
 }

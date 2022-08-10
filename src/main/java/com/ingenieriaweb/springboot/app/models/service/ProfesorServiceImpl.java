@@ -1,6 +1,7 @@
 package com.ingenieriaweb.springboot.app.models.service;
 
 import com.ingenieriaweb.springboot.app.models.dao.IAulaDao;
+import com.ingenieriaweb.springboot.app.models.dao.IAreaDao;
 import com.ingenieriaweb.springboot.app.models.dao.ICursoDao;
 import com.ingenieriaweb.springboot.app.models.dao.IProfesorDao;
 import com.ingenieriaweb.springboot.app.models.dao.ITarifaDao;
@@ -28,6 +29,9 @@ public class ProfesorServiceImpl implements IProfesorService {
 
     @Autowired
     private ITarifaDao tarifaDao;
+
+    @Autowired
+    private IAreaDao areaDao;
 
     @Autowired
     private IAulaDao aulaDao;
@@ -167,6 +171,37 @@ public class ProfesorServiceImpl implements IProfesorService {
     }
 
     //Area
+
+    @Override
+    public List<Area> findByArea(String term) {
+        // TODO Auto-generated method stub
+        return areaDao.findByAreaLikeIgnoreCase("%" + term + "%");
+    }
+
+    @Override
+    public List<Area> findAllAr() {
+        return (List<Area>) areaDao.findAll();
+    }
+
+    @Override
+    public Page<Area> findAllAr(Pageable pageable) {
+        return areaDao.findAll(pageable);
+    }
+
+    @Override
+    public Area findOneAr(Long id) {
+        return areaDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveArea(Area area) {
+        areaDao.save(area);
+    }
+
+    @Override
+    public void deleteAr(Long id) {
+        areaDao.deleteById(id);
+    }
 
 
 }
