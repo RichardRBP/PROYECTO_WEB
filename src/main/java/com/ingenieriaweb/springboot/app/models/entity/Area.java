@@ -17,11 +17,9 @@ public class Area {
     @NotEmpty
     private String area;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_aula", referencedColumnName = "id")
+    @OneToOne(mappedBy = "area")
     private Aula aula;
     
-
     public Aula getAula() {
         return aula;
     }
@@ -40,14 +38,6 @@ public class Area {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
     }
 
 

@@ -1,10 +1,14 @@
 /* Populate tables */
 
--- insert into aulas
-insert into aulas (aula) values ('A');
-insert into aulas (aula) values ('B');
-insert into aulas (aula) values ('C');
-insert into aulas (aula) values ('D');
+insert into areas (area) values ('ÁREA "A" - CIENCIAS DE LA VIDA Y DE LA SALUD');
+insert into areas (area) values ('ÁREA "B" - CIENCIAS BÁSICAS Y TECNOLÓGICAS');
+insert into areas (area) values ('ÁREA "C" - CIENCIAS DE LA PERSONA');
+insert into areas (area) values ('ÁREA "D" - CIENCIAS ECONÓMICAS');
+
+insert into aulas (aula,area_id) values ('A',1);
+insert into aulas (aula,area_id) values ('B',2);
+insert into aulas (aula,area_id) values ('C',3);
+insert into aulas (aula,area_id) values ('D',4);
 
 INSERT INTO cursos (etapa,nivel) VALUES ('5to Secundaria',1);
 INSERT INTO cursos (etapa,nivel) VALUES ('Verano',2);
