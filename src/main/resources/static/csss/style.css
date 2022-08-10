@@ -4,10 +4,10 @@ body {
 	font-family: poppins;
 }
 nav {
-	position: fixed;
+	/*position: fixed;*/
 	width: 100%;
-	margin: 25px auto;
-	display: flex;
+	/*margin: 25px auto;*/
+	/*display: flex;*/
 	justify-content: center;
 	background-color: #f7bc25;
 }
@@ -18,7 +18,8 @@ nav a {
 	text-transform: uppercase;
 	font-weight: 300;
 	font-family: poppins;
-	margin-right: 25px;
+	margin-right: 30px;
+	margin-left: 30px;
 }
 nav a.logo {
 	font-weight: 600;
