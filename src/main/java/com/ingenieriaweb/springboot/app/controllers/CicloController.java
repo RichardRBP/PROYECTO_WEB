@@ -18,85 +18,83 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import com.ingenieriaweb.springboot.app.models.entity.Rol;
-import com.ingenieriaweb.springboot.app.models.service.IRolService;
+import com.ingenieriaweb.springboot.app.models.entity.Ciclo;
+import com.ingenieriaweb.springboot.app.models.service.ICicloService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
 
 @Controller
-@RequestMapping("/rol")
-@SessionAttributes("rol")
-public class RolController {
+@RequestMapping("/ciclo")
+@SessionAttributes("ciclo")
+public class CicloController {
     
     @Autowired
-    private IRolService RolService;
+    private ICicloService cicloService;
 
-    @Autowired
-    private IUploadFileService uploadFileService;
-
+     
     @GetMapping(value = "/listar")
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
         Pageable pageRequest = PageRequest.of(page, 5);
 
-        Page<Rol> roles = RolService.findAll(pageRequest);
+        Page<Ciclo> ciclos = cicloService.findAll(pageRequest);
 
-        PageRender<Rol> pageRender = new PageRender<Rol>("/rol/listar", roles);
-        model.addAttribute("titulo", "Listado de Roles");
-        model.addAttribute("roles", roles);
+        PageRender<Ciclo> pageRender = new PageRender<Ciclo>("/ciclo/listar", ciclos);
+        model.addAttribute("titulo", "Listado de Ciclos");
+        model.addAttribute("ciclos", ciclos);
         model.addAttribute("page", pageRender);
-        return "rol/listar";
+        return "ciclo/listar";
     }
     
     @GetMapping(value = "/form")
     public String crear(Map<String, Object> model) {
 
-        Rol rol = new Rol();
-        model.put("rol", rol);
-        model.put("titulo", "Formulario de Rol");
-        return "rol/form";
+        Ciclo ciclo = new Ciclo();
+        model.put("ciclo", ciclo);
+        model.put("titulo", "Formulario de Ciclo");
+        return "ciclo/form";
     }
 
     @GetMapping(value = "/form/{id}")
     public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
-        Rol rol = null;
+        Ciclo ciclo = null;
 
         if (id > 0) {
-            rol = RolService.findOne(id);
-            if (rol == null) {
-                flash.addFlashAttribute("error", "El ID del rol no existe en la BBDD!");
+            ciclo = cicloService.findOne(id);
+            if (ciclo == null) {
+                flash.addFlashAttribute("error", "El ID del ciclo no existe en la BBDD!");
                 return "redirect:/curso/listar";
             }
         } else {
-            flash.addFlashAttribute("error", "El ID del rol no puede ser cero!");
+            flash.addFlashAttribute("error", "El ID del ciclo no puede ser cero!");
             return "redirect:/curso/listar";
         }
-        model.put("rol", rol);
-        model.put("titulo", "Editar Rol");
-        return "rol/form";
+        model.put("ciclo", ciclo);
+        model.put("titulo", "Editar Ciclo");
+        return "ciclo/form";
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String guardar(@Valid Rol rol, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
+    public String guardar(@Valid Ciclo ciclo, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
-            model.addAttribute("titulo", "Formulario de Rol");
-            return "/rol/form";
+            model.addAttribute("titulo", "Formulario de Ciclo");
+            return "/ciclo/form";
         }
-        String mensajeFlash = (rol.getId() != null) ? "Rol editado con éxito!" : "Rol creado con éxito!";
-        RolService.save(rol);
+        String mensajeFlash = (ciclo.getId() != null) ? "Ciclo editado con éxito!" : "Ciclo creado con éxito!";
+        cicloService.save(ciclo);
         status.setComplete();
         flash.addFlashAttribute("success", mensajeFlash);
-        return "redirect:/rol/listar";
+        return "redirect:/ciclo/listar";
     }
 
 
     @RequestMapping(value = "/eliminar/{id}")
     public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
         if (id > 0) {
-            RolService.delete(id);
-            flash.addFlashAttribute("success", "Rol eliminado con éxito!");
+            cicloService.delete(id);
+            flash.addFlashAttribute("success", "ciclo eliminado con éxito!");
         }
-        return "redirect:/rol/listar";
+        return "redirect:/ciclo/listar";
     }
 }

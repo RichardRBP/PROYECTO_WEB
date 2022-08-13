@@ -6,44 +6,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.ingenieriaweb.springboot.app.models.dao.IRolDao;
-import com.ingenieriaweb.springboot.app.models.entity.Rol;
+import com.ingenieriaweb.springboot.app.models.dao.ICicloDao;
+import com.ingenieriaweb.springboot.app.models.entity.Ciclo;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class RolServiceImpl  implements IRolService{
+public class CicloServiceImpl  implements ICicloService{
     
     @Autowired
-    private IRolDao rolDao;
+    private ICicloDao CicloDao;
 
     @Override
-    public List<Rol> findAll() {
+    public List<Ciclo> findAll() {
         // TODO Auto-generated method stub
-        return (List<Rol>) rolDao.findAll();
+        return (List<Ciclo>) CicloDao.findAll();
     }
 
     
 
     @Override
-    public Page<Rol> findAll(Pageable pageable) {
-        return rolDao.findAll(pageable);
+    public Page<Ciclo> findAll(Pageable pageable) {
+        return CicloDao.findAll(pageable);
     }
 
 
 
     @Override
-    public Rol findOne(Long id) {
+    public Ciclo findOne(Long id) {
         // TODO Auto-generated method stub
-        return rolDao.findById(id).orElse(null);
+        return CicloDao.findById(id).orElse(null);
     }
 
 
 
     @Override
-    public void save(Rol rol) {
-        rolDao.save(rol);
+    public void save(Ciclo ciclo) {
+        CicloDao.save(ciclo);
         
     }
 
@@ -51,7 +51,7 @@ public class RolServiceImpl  implements IRolService{
 
     @Override
     public void delete(Long id) {
-        rolDao.deleteById(id);
+        CicloDao.deleteById(id);
         
     }
 

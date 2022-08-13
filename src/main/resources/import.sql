@@ -1,9 +1,17 @@
 /* Populate tables */
 
-insert into areas (area) values ('ÁREA "A" - CIENCIAS DE LA VIDA Y DE LA SALUD');
-insert into areas (area) values ('ÁREA "B" - CIENCIAS BÁSICAS Y TECNOLÓGICAS');
-insert into areas (area) values ('ÁREA "C" - CIENCIAS DE LA PERSONA');
-insert into areas (area) values ('ÁREA "D" - CIENCIAS ECONÓMICAS');
+insert into areas (area) values ('AREA "A" - CIENCIAS DE LA VIDA Y DE LA SALUD');
+insert into areas (area) values ('AREA "B" - CIENCIAS BÁSICAS Y TECNOLÓGICAS');
+insert into areas (area) values ('AREA "C" - CIENCIAS DE LA PERSONA');
+insert into areas (area) values ('AREA "D" - CIENCIAS ECONÓMICAS');
+
+insert into roles (rol, descripcion) values ('administrador','con acceso a todos los campos');
+insert into roles (rol, descripcion) values ('empleado','con acceso a las vistas para empleado');
+insert into roles (rol, descripcion) values ('alumno','con acceso a las vistas de alumno');
+
+insert into ciclos (ciclo, anio) values ('verano',2022);
+insert into ciclos (ciclo, anio) values ('semestral I',2022);
+insert into ciclos (ciclo, anio) values ('semestral II',2022); 
 
 insert into aulas (aula,area_id) values ('A',1);
 insert into aulas (aula,area_id) values ('B',2);

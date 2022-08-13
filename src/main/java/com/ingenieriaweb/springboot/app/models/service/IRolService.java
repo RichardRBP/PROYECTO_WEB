@@ -12,4 +12,10 @@ public interface IRolService {
 
     public Page<Rol> findAll(Pageable pageable);
 
+    public Rol findOne(Long id);
+
+    public void save(Rol rol);
+
+    public void delete(Long id);
+
 }
