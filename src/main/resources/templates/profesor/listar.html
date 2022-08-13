@@ -35,9 +35,7 @@
                                                                             th:src="@{'/uploads/' + ${profesor.foto}}"
                                                                             th:alt="${profesor.foto}"/>
                 </td>
-                <td th:unless="${profesor?.foto}" th:text="Sin Foto">
-
-                </td>
+                <td th:unless="${profesor?.foto}"  > Sin Foto </td>
                 <td th:text="${profesor.telefono}"></td>
                 <td th:text="${profesor.email}"></td>
                 <td th:text="${profesor.titulacion}"></td>

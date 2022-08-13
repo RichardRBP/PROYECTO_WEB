@@ -91,11 +91,11 @@ public class EmpleadoController {
             empleado = EmpleadoService.findOne(id);
             if (empleado == null) {
                 flash.addFlashAttribute("error", "El ID del Empleado no existe en la BBDD!");
-                return "redirect:/curso/listar";
+                return "redirect:/empleado/listar";
             }
         } else {
             flash.addFlashAttribute("error", "El ID del Empleado no puede ser cero!");
-            return "redirect:/curso/listar";
+            return "redirect:/empleado/listar";
         }
         model.put("empleado", empleado);
         model.put("titulo", "Editar Empleado");

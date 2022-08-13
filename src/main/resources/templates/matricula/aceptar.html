@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout/layout :: head"></head>
+  <body>
+    <header th:replace="layout/layout :: header"></header>
+    <div class="banner-profesores">
+      <div class="card text-white bg-dark mb-3">
+        <div class="card-header">
+            <a th:href="@{/empleado/form}" class="btn btn-primary"
+            >Registrar nueva Matricula</a>
+        </div>
+        <table class="table table-dark table-hover center">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Codigo de Operacion</th>
+              <th>Fecha Operacion</th>
+              <th>Banco</th>
+              <th>Monto</th>
+              <th>Foto</th>
+              <th>Estado</th>
+              <th>Turno</th>
+              <th>Tarifa</th>
+              <th>Alumno</th>
+              <th>Ver</th>
+               
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="matricula: ${matriculas}">
+              <td th:text="${matricula.id}"></td>
+              <td th:text="${matricula.codigoOperacion}"></td>
+              <td th:text="${matricula.fechaOperacion}"></td>
+              <td th:text="${matricula.banco}"></td>
+
+              <td th:text="${matricula.monto}"></td>
+              <td th:if="${matricula?.foto}" style="max-width: 180px">
+                <img
+                  th:if="${#strings.length(matricula.foto) > 0}"
+                  class="img-thumbnail rounded float-left"
+                  style="max-width: 100%"
+                  th:src="@{'/uploads/' + ${matricula.foto}}"
+                  th:alt="${matricula.foto}"
+                />
+              </td>
+              <td th:unless="${matricula?.foto}" th:text="Sin Foto"></td>
+              <td th:text="${matricula.estado}"></td>
+              <td th:text="${matricula.turno}"></td>
+              <td th:text="${matricula.tarifa.nombre}"></td>
+              <td th:text="${matricula.estado}"></td>
+              <td>
+                <a
+                  class="btn btn-primary btn-sm"
+                  th:href="@{/matricula/form/} + ${matricula.id}"
+                  th:text="'Ver'"
+                ></a>
+              </td>
+               
+            </tr>
+          </tbody>
+        </table>
+      <!--   <nav th:replace="paginator-nav :: paginator"></nav>-->
+      </div>
+    </div>
+    <footer th:replace="layout/layout :: footer"></footer>
+  </body>
+</html>

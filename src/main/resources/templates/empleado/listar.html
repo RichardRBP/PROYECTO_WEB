@@ -46,7 +46,7 @@
                   th:alt="${empleado.foto}"
                 />
               </td>
-              <td th:unless="${empleado?.foto}" th:text="Sin Foto"></td>
+              <td th:unless="${empleado?.foto}"  >Sin Foto</td>
               <td th:text="${empleado.direccion}"></td>
               <td th:text="${empleado.dni}"></td>
               <td th:text="${empleado.edad}"></td>
