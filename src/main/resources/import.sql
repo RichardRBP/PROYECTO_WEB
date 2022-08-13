@@ -13,6 +13,10 @@ insert into ciclos (ciclo, anio) values ('verano',2022);
 insert into ciclos (ciclo, anio) values ('semestral I',2022);
 insert into ciclos (ciclo, anio) values ('semestral II',2022); 
 
+insert into empleados (cargo, nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo) values ('secretaria','gianina','pastor','973152460','gianinapastor25@gmail.com','','av san juan nro 404','75954821',25,'FEMENINO'); 
+insert into empleados (cargo, nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo) values ('profesor','pedro','hidalgo','934752460','pedrohidalgo47@gmail.com','','av los laureles nro 500','71392864',35,'MASCULINO'); 
+
+
 insert into aulas (aula,area_id) values ('A',1);
 insert into aulas (aula,area_id) values ('B',2);
 insert into aulas (aula,area_id) values ('C',3);
