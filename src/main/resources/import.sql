@@ -1,9 +1,24 @@
 /* Populate tables */
 
-insert into areas (area) values ('ÁREA "A" - CIENCIAS DE LA VIDA Y DE LA SALUD');
-insert into areas (area) values ('ÁREA "B" - CIENCIAS BÁSICAS Y TECNOLÓGICAS');
-insert into areas (area) values ('ÁREA "C" - CIENCIAS DE LA PERSONA');
-insert into areas (area) values ('ÁREA "D" - CIENCIAS ECONÓMICAS');
+insert into areas (area) values ('AREA "A" - CIENCIAS DE LA VIDA Y DE LA SALUD');
+insert into areas (area) values ('AREA "B" - CIENCIAS BÁSICAS Y TECNOLÓGICAS');
+insert into areas (area) values ('AREA "C" - CIENCIAS DE LA PERSONA');
+insert into areas (area) values ('AREA "D" - CIENCIAS ECONÓMICAS');
+
+insert into carreras (nombre,puntajePromedio,idArea) values ('ING de sistemas',180,2);
+
+insert into roles (rol, descripcion) values ('administrador','con acceso a todos los campos');
+insert into roles (rol, descripcion) values ('empleado','con acceso a las vistas para empleado');
+insert into roles (rol, descripcion) values ('alumno','con acceso a las vistas de alumno');
+
+insert into ciclos (ciclo, anio) values ('verano',2022);
+insert into ciclos (ciclo, anio) values ('semestral I',2022);
+insert into ciclos (ciclo, anio) values ('semestral II',2022); 
+
+insert into empleados (cargo, nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo) values ('secretaria','gianina','pastor','973152460','gianinapastor25@gmail.com','','av san juan nro 404','75954821',25,'FEMENINO'); 
+insert into empleados (cargo, nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo) values ('profesor','pedro','hidalgo','934752460','pedrohidalgo47@gmail.com','','av los laureles nro 500','71392864',35,'MASCULINO'); 
+
+
 
 insert into aulas (aula,area_id) values ('A',1);
 insert into aulas (aula,area_id) values ('B',2);
@@ -29,6 +44,12 @@ INSERT INTO tarifas (nombre,descripcion,precio) VALUES ('Tarifa Semestral','Tari
 INSERT INTO tarifas (nombre,descripcion,precio) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 852.24)
 INSERT INTO tarifas (nombre,descripcion,precio) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 852.24)
 INSERT INTO tarifas (nombre,descripcion,precio) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 852.24)
+
+insert into tipoAlumnos (nombreTipo,idTarifa) values ('5to grado',1);
+
+insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','Interbank',500,'','EN PROCESO','TARDE',1);
+insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','BCP',500,'','ACEPTADA','NOCHE',1);
+
 
 
 
