@@ -89,5 +89,4 @@ public class TipoAlumnoController {
         }
         return "redirect:/tipoAlumno/listar";
     }
-    
 }
