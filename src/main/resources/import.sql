@@ -45,7 +45,9 @@ INSERT INTO tarifas (nombre,descripcion,precio) VALUES ('Tarifa Semestral','Tari
 INSERT INTO tarifas (nombre,descripcion,precio) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 852.24)
 INSERT INTO tarifas (nombre,descripcion,precio) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 852.24)
 
-insert into tipoAlumnos (nombreTipo,idTarifa) values ('5to grado',1);
+insert into tipoAlumnos (nombreTipo) values ('5to grado');
+insert into tipoAlumnos (nombreTipo) values ('Regular');
+insert into tipoAlumnos (nombreTipo) values ('Cepunt');
 
 insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','Interbank',500,'','EN PROCESO','TARDE',1);
 insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','BCP',500,'','ACEPTADA','NOCHE',1);
