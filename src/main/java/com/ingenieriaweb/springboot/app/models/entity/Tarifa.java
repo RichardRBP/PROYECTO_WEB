@@ -30,6 +30,10 @@ public class Tarifa implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Ciclo ciclo;
 
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TipoAlumno tipoAlumno;
+
     public static long getSerialversionuid() {
         return serialVersionUID;
     }

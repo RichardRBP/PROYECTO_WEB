@@ -25,6 +25,9 @@ public class TipoAlumno implements Serializable {
     @OneToMany(mappedBy = "tipoAlumno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Alumno> alumnos;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "tipoAlumno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Tarifa> tarifas;
 
     public Long getId() {
         return id;
@@ -48,5 +51,13 @@ public class TipoAlumno implements Serializable {
 
     public void setAlumnos(List<Alumno> alumnos) {
         this.alumnos = alumnos;
+    }
+
+    public List<Tarifa> getTarifas() {
+        return tarifas;
+    }
+
+    public void setTarifas(List<Tarifa> tarifas) {
+        this.tarifas = tarifas;
     }
 }
