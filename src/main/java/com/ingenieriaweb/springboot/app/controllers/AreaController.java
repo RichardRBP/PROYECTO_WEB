@@ -1,6 +1,7 @@
 package com.ingenieriaweb.springboot.app.controllers;
 
 import com.ingenieriaweb.springboot.app.models.entity.Area;
+import com.ingenieriaweb.springboot.app.models.entity.Ciclo;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
 
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
@@ -49,6 +50,26 @@ public class AreaController {
         model.addAttribute("titulo", "Formulario de Area");
         return "area/form";
     }
+    
+    @GetMapping(value = "/form/{id}")
+    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
+
+    	Area area = null;
+
+        if (id > 0) {
+        	area = profesorService.findOneAr(id);
+            if (area == null) {
+                flash.addFlashAttribute("error", "El ID del area no existe en la BBDD!");
+                return "redirect:/area/listar";
+            }
+        } else {
+            flash.addFlashAttribute("error", "El ID del area no puede ser cero!");
+            return "redirect:/area/listar";
+        }
+        model.put("area", area);
+        model.put("titulo", "Editar Area");
+        return "area/form";
+    }    
     
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(@Valid Area area, BindingResult result, Model model, SessionStatus status) {

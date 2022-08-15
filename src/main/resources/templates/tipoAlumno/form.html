@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="banner-alumno">
+    <div class="container py-3">
+        <div class="card-body text-white bg-dark">
+            <div th:object="${tipoAlumno}" th:remove="tag">
+                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                </ul>
+            </div>
+            <form th:action="@{/tipoAlumno/form}" th:object="${tipoAlumno}" method="post" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label for="nombreTipo" class="col-sm-2 col-form-label"
+                           th:text="'Tipo de Alumno'"></label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{nombreTipo}" class="form-control" id="nombreTipo"
+                               th:errorclass="'form-control is-invalid'"/>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombreTipo')}" th:errors="*{nombreTipo}"></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3" style="text-align: center;"></div>
+                    <div class="col-sm-3" style="text-align: center;">
+                        <input type="submit" value="Crear Tipo de Alumno" class="btn btn-success"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <a th:href="@{/tipoAlumno/listar}">
+                            <input value="Cancelar" class="btn btn-dark"/></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

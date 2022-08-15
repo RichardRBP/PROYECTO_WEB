@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "areas")
-public class Area {
+public class Area implements Serializable  {
     
     private static final long serialVersionUID = 1L;
 

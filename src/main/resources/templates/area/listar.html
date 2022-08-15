@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="banner-area">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header">
+            <a th:href="@{/area/form}" class="btn btn-primary">Registrar nueva Area</a>
+        </div>
+        <table class="table table-dark table-hover center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Area</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="area: ${areas}">
+                <td th:text="${area.id}"></td>
+                <td th:text="${area.area}"></td>
+                <td><a class="btn btn-primary btn-sm"
+                       th:href="@{/area/form/} + ${area.id}" th:text="'editar'"></a></td>
+                <td><a class="btn btn-danger btn-sm"
+                       th:href="@{/area/eliminar/} + ${area.id}" th:text="'eliminar'"
+                       onclick="return confirm('Estás seguro que quieres eliminar esta área?');"></a></td>
+            </tr>
+            </tbody>
+        </table>
+        <nav th:replace="paginator-nav :: paginator"></nav>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
