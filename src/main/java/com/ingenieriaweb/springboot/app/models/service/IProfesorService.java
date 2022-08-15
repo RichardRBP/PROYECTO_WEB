@@ -1,10 +1,6 @@
 package com.ingenieriaweb.springboot.app.models.service;
 
-import com.ingenieriaweb.springboot.app.models.entity.Aula;
-import com.ingenieriaweb.springboot.app.models.entity.Area;
-import com.ingenieriaweb.springboot.app.models.entity.Curso;
-import com.ingenieriaweb.springboot.app.models.entity.Profesor;
-import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
+import com.ingenieriaweb.springboot.app.models.entity.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -79,4 +75,33 @@ public interface IProfesorService {
 
     public void deleteAr(Long id);
 
+    //Carrera
+
+    public List<Carrera> findByCarrera(String term);
+
+    public List<Carrera> findAllCar();
+
+    public Page<Carrera> findAllCar(Pageable pageable);
+
+    public Carrera findOneCar(Long id);
+
+    public void saveCarrera(Carrera carrera);
+
+    public void deleteCar(Long id);
+
+    //Alumno
+
+    public List<Alumno> findByAlumno(String term);
+
+    public List<Alumno> findAllAlu();
+
+    public Page<Alumno> findAllAlu(Pageable pageable);
+
+    public Alumno findOneAlu(Long id);
+
+    public void saveAlumno(Alumno alumno);
+
+    public void deleteAlu(Long id);
+
 }
+
