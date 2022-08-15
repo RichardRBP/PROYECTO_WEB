@@ -1,9 +1,12 @@
 package com.ingenieriaweb.springboot.app.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "profesores")
@@ -35,6 +38,10 @@ public class Profesor implements Serializable {
     private String titulacion;
 
     private String foto;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "profesor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Curso> cursos;
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -102,5 +109,13 @@ public class Profesor implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 }

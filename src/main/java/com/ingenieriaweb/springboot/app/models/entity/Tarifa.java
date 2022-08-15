@@ -1,5 +1,7 @@
 package com.ingenieriaweb.springboot.app.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -23,6 +25,10 @@ public class Tarifa implements Serializable {
 
     @NotNull
     private Float precio;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Ciclo ciclo;
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -58,5 +64,13 @@ public class Tarifa implements Serializable {
 
     public void setPrecio(Float precio) {
         this.precio = precio;
+    }
+
+    public Ciclo getCiclo() {
+        return ciclo;
+    }
+
+    public void setCiclo(Ciclo ciclo) {
+        this.ciclo = ciclo;
     }
 }

@@ -1,5 +1,7 @@
 package com.ingenieriaweb.springboot.app.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -17,8 +19,13 @@ public class Aula implements Serializable {
     @NotEmpty
     private String aula;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Area area;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Curso curso;
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -48,5 +55,11 @@ public class Aula implements Serializable {
         this.area = area;
     }
 
+    public Curso getCurso() {
+        return curso;
+    }
 
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 }

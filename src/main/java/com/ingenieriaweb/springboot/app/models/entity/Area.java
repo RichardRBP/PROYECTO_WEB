@@ -1,5 +1,7 @@
 package com.ingenieriaweb.springboot.app.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -18,6 +20,7 @@ public class Area {
     @NotEmpty
     private String area;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Aula> aulas;
 

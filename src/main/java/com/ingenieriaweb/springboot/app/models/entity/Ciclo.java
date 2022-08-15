@@ -1,8 +1,11 @@
 package com.ingenieriaweb.springboot.app.models.entity;
-import javax.persistence.*; 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "ciclos")
@@ -19,6 +22,10 @@ public class Ciclo implements Serializable {
 
     @NotNull
     private Integer anio;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ciclo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Tarifa> tarifas;
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -49,8 +56,11 @@ public class Ciclo implements Serializable {
         this.ciclo = ciclo;
     }
 
-    
+    public List<Tarifa> getTarifas() {
+        return tarifas;
+    }
 
-
-    
+    public void setTarifas(List<Tarifa> tarifas) {
+        this.tarifas = tarifas;
+    }
 }
