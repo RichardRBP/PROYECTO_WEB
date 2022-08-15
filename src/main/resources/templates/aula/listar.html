@@ -14,6 +14,7 @@
                 <th>Id</th>
                 <th>Aula</th>
                 <th>Área</th>
+                <th>Curso</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -23,6 +24,7 @@
                 <td th:text="${aula.id}"></td>
                 <td th:text="${aula.aula}"></td>
                 <td th:text="${aula.area.area}"></td>
+                <td th:text="${aula.curso.nombre}"></td>
                 <td><a class="btn btn-primary btn-sm"
                        th:href="@{/aula/form/} + ${aula.id}" th:text="'editar'"></a></td>
                 <td><a class="btn btn-danger btn-sm"

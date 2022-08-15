@@ -12,8 +12,10 @@
             <thead>
             <tr>
                 <th>ID</th>
+                <th>Nombre</th>
                 <th>Nivel</th>
                 <th>Etapa</th>
+                <th>Profesor</th>
                 <th>editar</th>
                 <th>eliminar</th>
             </tr>
@@ -21,8 +23,10 @@
             <tbody>
             <tr th:each="curso: ${cursos}">
                 <td th:text="${curso.id}"></td>
+                <td th:text="${curso.nombre}"></td>
                 <td th:text="${curso.nivel}"></td>
                 <td th:text="${curso.etapa}"></td>
+                <td th:text="${curso.profesor.nombre} + ' ' + ${curso.profesor.apellido}"></td>
                 <td><a class="btn btn-primary btn-sm"
                        th:href="@{/curso/form/} + ${curso.id}" th:text="'editar'"></a></td>
                 <td><a class="btn btn-danger btn-sm"

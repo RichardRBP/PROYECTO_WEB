@@ -49,6 +49,7 @@ public class CursoController {
 
         Curso curso = new Curso();
         model.put("curso", curso);
+        model.put("profesores", profesorService.findAllP());
         model.put("titulo", "Formulario de Curso");
         return "curso/form";
     }
@@ -69,6 +70,7 @@ public class CursoController {
             return "redirect:/curso/listar";
         }
         model.put("curso", curso);
+        model.put("profesores", profesorService.findAllP());
         model.put("titulo", "Editar curso");
         return "curso/form";
     }
@@ -77,6 +79,7 @@ public class CursoController {
     public String guardar(@Valid Curso curso, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Curso");
+            model.addAttribute("profesores", profesorService.findAllP());
             return "/curso/form";
         }
         String mensajeFlash = (curso.getId() != null) ? "Curso editado con éxito!" : "Curso creado con éxito!";
