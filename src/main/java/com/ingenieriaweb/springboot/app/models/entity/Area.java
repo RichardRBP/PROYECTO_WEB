@@ -24,6 +24,11 @@ public class Area {
     @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Aula> aulas;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Carrera> carreras;
+
+
     public String getArea() {
         return area;
     }
@@ -52,5 +57,11 @@ public class Area {
         this.id = id;
     }
 
+    public List<Carrera> getCarreras() {
+        return carreras;
+    }
 
+    public void setCarreras(List<Carrera> carreras) {
+        this.carreras = carreras;
+    }
 }

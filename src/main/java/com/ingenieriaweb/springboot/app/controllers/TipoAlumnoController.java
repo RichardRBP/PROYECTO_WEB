@@ -50,7 +50,7 @@ public class TipoAlumnoController {
         return "tipoAlumno/form";
     }
     
-    @PostMapping(value = "/form", method = RequestMethod.POST)
+    @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(@Valid TipoAlumno tipoAlumno, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de TipoAlumno");

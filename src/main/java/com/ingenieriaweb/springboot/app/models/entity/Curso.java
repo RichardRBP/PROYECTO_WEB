@@ -20,6 +20,9 @@ public class Curso implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
+    private String nombre;
+
     @NotNull
     private Integer nivel;
 
@@ -36,6 +39,14 @@ public class Curso implements Serializable {
 
     public static long getSerialversionuid() {
         return serialVersionUID;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Long getId() {

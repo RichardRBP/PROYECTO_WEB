@@ -1,9 +1,12 @@
 package com.ingenieriaweb.springboot.app.models.entity;
 
-import javax.persistence.*; 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "tipoAlumnos")
@@ -17,6 +20,10 @@ public class TipoAlumno implements Serializable {
 
     @NotEmpty
     private String nombreTipo;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "tipoAlumno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Alumno> alumnos;
 
 
     public Long getId() {
@@ -34,5 +41,12 @@ public class TipoAlumno implements Serializable {
     public void setNombreTipo(String nombreTipo) {
         this.nombreTipo = nombreTipo;
     }
-    
+
+    public List<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(List<Alumno> alumnos) {
+        this.alumnos = alumnos;
+    }
 }
