@@ -77,4 +77,12 @@ public class Tarifa implements Serializable {
     public void setCiclo(Ciclo ciclo) {
         this.ciclo = ciclo;
     }
+
+    public TipoAlumno getTipoAlumno() {
+        return tipoAlumno;
+    }
+
+    public void setTipoAlumno(TipoAlumno tipoAlumno) {
+        this.tipoAlumno = tipoAlumno;
+    }
 }

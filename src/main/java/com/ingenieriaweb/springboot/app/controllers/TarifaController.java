@@ -2,7 +2,9 @@ package com.ingenieriaweb.springboot.app.controllers;
 
 
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
+import com.ingenieriaweb.springboot.app.models.service.ICicloService;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
+import com.ingenieriaweb.springboot.app.models.service.ITipoAlumnoService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,12 @@ public class TarifaController {
     @Autowired
     private IProfesorService profesorService;
 
+    @Autowired
+    private ITipoAlumnoService tipoAlumnoService;
+
+    @Autowired
+    private ICicloService cicloService;
+
     @GetMapping(value = "/listar")
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
@@ -46,6 +54,8 @@ public class TarifaController {
 
         Tarifa tarifa = new Tarifa();
         model.put("tarifa", tarifa);
+        model.put("tipoAlumnos", tipoAlumnoService.findAll());
+        model.put("ciclos", cicloService.findAll());
         model.put("titulo", "Formulario de Tarifa");
         return "tarifa/form";
     }
@@ -66,6 +76,8 @@ public class TarifaController {
             return "redirect:/tarifa/listar";
         }
         model.put("tarifa", tarifa);
+        model.put("tipoAlumnos", tipoAlumnoService.findAll());
+        model.put("ciclos", cicloService.findAll());
         model.put("titulo", "Editar Tarifa");
         return "tarifa/form";
     }
@@ -74,6 +86,8 @@ public class TarifaController {
     public String guardar(@Valid Tarifa tarifa, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Tarifa");
+            model.addAttribute("tipoAlumnos", tipoAlumnoService.findAll());
+            model.addAttribute("ciclos", cicloService.findAll());
             return "/tarifa/form";
         }
         String mensajeFlash = (tarifa.getId() != null) ? "Tarifa editado con éxito!" : "Tarifa creado con éxito!";

@@ -1,15 +1,7 @@
 package com.ingenieriaweb.springboot.app.models.service;
 
-import com.ingenieriaweb.springboot.app.models.dao.IAulaDao;
-import com.ingenieriaweb.springboot.app.models.dao.IAreaDao;
-import com.ingenieriaweb.springboot.app.models.dao.ICursoDao;
-import com.ingenieriaweb.springboot.app.models.dao.IProfesorDao;
-import com.ingenieriaweb.springboot.app.models.dao.ITarifaDao;
-import com.ingenieriaweb.springboot.app.models.entity.Aula;
-import com.ingenieriaweb.springboot.app.models.entity.Curso;
-import com.ingenieriaweb.springboot.app.models.entity.Profesor;
-import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
-import com.ingenieriaweb.springboot.app.models.entity.Area;
+import com.ingenieriaweb.springboot.app.models.dao.*;
+import com.ingenieriaweb.springboot.app.models.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,6 +29,14 @@ public class ProfesorServiceImpl implements IProfesorService {
 
     @Autowired
     private IAulaDao aulaDao;
+
+    @Autowired
+    private ICarreraDao carreraDao;
+
+    @Autowired
+    private IAlumnoDao alumnoDao;
+
+
 
     //Aula
 
@@ -210,6 +210,76 @@ public class ProfesorServiceImpl implements IProfesorService {
     public void deleteAr(Long id) {
         areaDao.deleteById(id);
     }
+
+    //Carrera
+
+    @Override
+    public List<Carrera> findByCarrera(String term) {
+        // TODO Auto-generated method stub
+        return carreraDao.findByNombreLikeIgnoreCase("%" + term + "%");
+    }
+
+    @Override
+    public List<Carrera> findAllCar() {
+        return (List<Carrera>) carreraDao.findAll();
+    }
+
+    @Override
+    public Page<Carrera> findAllCar(Pageable pageable) {
+        return carreraDao.findAll(pageable);
+    }
+
+    @Override
+    public Carrera findOneCar(Long id) {
+        return carreraDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveCarrera(Carrera carrera) {
+        carreraDao.save(carrera);
+    }
+
+    @Override
+    public void deleteCar(Long id) {
+        carreraDao.deleteById(id);
+    }
+
+    //Alumno
+
+    @Override
+    public List<Alumno> findByAlumno(String term) {
+        // TODO Auto-generated method stub
+        return alumnoDao.findByNombresLikeIgnoreCase("%" + term + "%");
+    }
+
+    @Override
+    public List<Alumno> findAllAlu() {
+        return (List<Alumno>) alumnoDao.findAll();
+    }
+
+    @Override
+    public Page<Alumno> findAllAlu(Pageable pageable) {
+        return alumnoDao.findAll(pageable);
+    }
+
+    @Override
+    public Alumno findOneAlu(Long id) {
+        return alumnoDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveAlumno(Alumno alumno) {
+        alumnoDao.save(alumno);
+    }
+
+    @Override
+    public void deleteAlu(Long id) {
+        alumnoDao.deleteById(id);
+    }
+
+
+
+
 
 
 }
