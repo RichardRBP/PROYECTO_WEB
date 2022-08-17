@@ -64,6 +64,10 @@ INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES (
 insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','Interbank',500,'','EN PROCESO','TARDE',1);
 insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','BCP',500,'','ACEPTADA','NOCHE',1);
 
+insert into simulacros (nombre,fecha) values ('Simulacro AREA "A"','2022-08-06');
+insert into simulacros (nombre,fecha) values ('Simulacro AREA "B"','2022-08-06');
+insert into simulacros (nombre,fecha) values ('Simulacro AREA "C"','2022-08-06');
+insert into simulacros (nombre,fecha) values ('Simulacro AREA "D"','2022-08-06');
 
-
+insert into matriculasimulacro (matricula_id,simulacro_id,pcorrecta,pincorrecta,nota) values (1,1,30,5,115);
 
