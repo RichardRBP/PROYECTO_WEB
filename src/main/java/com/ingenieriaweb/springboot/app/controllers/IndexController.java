@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/app")
+@RequestMapping("/")
 public class IndexController {
 
-    @GetMapping({"/", "/login"}) //login
+    @GetMapping({"/login"}) //login
     public String login(Model model) {
         model.addAttribute("login", "BIENVENIDO");
         return "login";

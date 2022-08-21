@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "matriculasimulacro")
+@Table(name = "simulacro_items")
 public class MatriculaSimulacro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,6 +29,7 @@ public class MatriculaSimulacro implements Serializable {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "matricula_id")
     private Matricula matricula;
 
 //	@JsonBackReference

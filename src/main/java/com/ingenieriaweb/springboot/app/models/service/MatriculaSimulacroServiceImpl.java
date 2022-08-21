@@ -7,37 +7,18 @@ import org.springframework.data.domain.Pageable;
 import com.ingenieriaweb.springboot.app.models.dao.IMatriculaSimulacroDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class MatriculaSimulacroServiceImpl implements IMatriculaSimulacroService {
+
     @Autowired
-    private IMatriculaService matriculaService;
+    private IMatriculaSimulacroDao MatriculaSimulacroDao;
 
     @Override
-    public List<MatriculaSimulacro> findAll() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Page<MatriculaSimulacro> findAll(Pageable pageable) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
+    @Transactional(readOnly = true)
     public MatriculaSimulacro findOne(Long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void save(MatriculaSimulacro matriculaSimulacro) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void delete(Long id) {
-        // TODO Auto-generated method stub
+        return MatriculaSimulacroDao.findById(id).orElse(null);
     }
 
 }

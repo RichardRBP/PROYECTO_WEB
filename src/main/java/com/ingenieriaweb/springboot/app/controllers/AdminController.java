@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/app")
+@RequestMapping("/")
 public class AdminController {
 	
-	@GetMapping({ "/", "/admin"}) //central-administrador
+	@GetMapping({ "/admin"}) //central-administrador
 	public String admin(Model model) {
 		model.addAttribute("admin", "BIENVENIDO");
 		return "admin";
