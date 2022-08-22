@@ -62,11 +62,6 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         <!-- Jasper reports dependency. -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>6.11.0</version>
-        </dependency>
 		 <!-- ... other dependency elements ...-->
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
