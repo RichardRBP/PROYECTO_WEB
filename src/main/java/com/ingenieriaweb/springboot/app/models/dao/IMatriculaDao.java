@@ -8,7 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface IMatriculaDao extends PagingAndSortingRepository<Matricula, Long>{
     
-    @Query("select m from Matricula m where m.estado = 'EN PROCESO'")
+    @Query("select m from Matricula m where m.estado = 'RESERVADA' ")
     public List<Matricula> findByEstado();
 
 

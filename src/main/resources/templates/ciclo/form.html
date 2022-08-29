@@ -7,6 +7,7 @@
 <div class="banner-curso">
     <div class="container py-3">
         <div class="card-body text-white bg-dark">
+         <div class="card-header" th:text="${titulo}"></div>
             <div th:object="${ciclo}" th:remove="tag">
                 <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
                     <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
@@ -14,30 +15,30 @@
             </div>
             <form th:action="@{/ciclo/form}" th:object="${ciclo}" method="post" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label for="ciclo" class="col-sm-2 col-form-label"
-                           th:text="'ciclo'"></label>
-                    <div class="col-sm-6">
-                        <input type="text" th:field="*{ciclo}" class="form-control" id="ciclo" th:errorclass="'form-control is-invalid'" />
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('ciclo')}" th:errors="*{ciclo}"></div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Año</label>
-                    <div class="col-sm-6">
-                        <input type="number" th:field="*{anio}" class="form-control"
+                 <div class="col-sm-6 ">
+                <label class="form-label">Ciclo</label>
+                <input type="text" th:field="*{ciclo}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('ciclo')}" th:errors="*{ciclo}"></small>
+                            
+              </div>
+              <div class="col-sm-6 ">
+                <label class="form-label">Año</label>
+                <input type="number" th:field="*{anio}" class="form-control"
                                th:errorclass="'form-control alert-danger'"/> <small
                             class="form-text text-danger"
                             th:if="${#fields.hasErrors('anio')}" th:errors="*{anio}"></small>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-3" style="text-align: center;"></div>
-                    <div class="col-sm-3" style="text-align: center;">
+                            
+              </div>
+                    
+			</div>
+               <br>
+                <div class="form-group row"> 
+                    <div class="col col-6" style="text-align: center;">
                         <input type="submit" value="Crear Ciclo" class="btn btn-success"/>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col col-6">
                         <a th:href="@{/ciclo/listar}">
                             <input value="Cancelar" class="btn btn-dark"/></a>
                     </div>

@@ -61,8 +61,9 @@ INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES (
 INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 852.24,2,2);
 INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Cepunt','Tarifa para los alumnos de Cepunt', 852.24,2,3);
 
-insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','Interbank',500,'','EN PROCESO','TARDE',1);
-insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id) values (9465243,'2022-08-08','BCP',500,'','ACEPTADA','NOCHE',1);
+insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id,alumno_id) values (9465243,'2022-08-08','Interbank',500,'','RESERVADA','TARDE',1,1);
+insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id,alumno_id) values (9465243,'2022-08-08','BCP',500,'','ACEPTADA','NOCHE',1,1);
+insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id,alumno_id) values (9465243,'2022-08-08','CONTINENTAL',800,'','RESERVADA','TARDE',1,1);
 
 insert into simulacros (nombre,fecha) values ('Simulacro AREA "A"','2022-08-06');
 insert into simulacros (nombre,fecha) values ('Simulacro AREA "B"','2022-08-06');

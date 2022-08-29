@@ -7,6 +7,12 @@
     <link rel="stylesheet" th:href="@{/csss/style.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
+    <style>
+        .oscuro{
+           background-color: rgb(128, 128, 128)  ;
+                  color:white;
+        }
+    </style>
 </head>
 <body>
 <header class="header align-items-center" th:fragment="header">
@@ -27,6 +33,7 @@
             <a th:href="@{/ciclo/listar}">Ciclos</a>
             <a th:href="@{/matricula/listar}">Matriculas</a>
             <a th:href="@{/matricula/aceptar}">Aceptar Matriculas</a>
+            <a th:href="@{/logout}">Salir</a>
         </nav>
     </div>
     <div>

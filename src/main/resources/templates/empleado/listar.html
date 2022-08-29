@@ -3,17 +3,11 @@
   <head th:replace="layout/layout :: head"></head>
   <body>
     <header th:replace="layout/layout :: header"></header>
-    <div class="banner-profesores">
+   <div class="banner-profesores">
       <div class="card text-white bg-dark mb-3">
         <div class="card-header">
           <a th:href="@{/empleado/form}" class="btn btn-primary"
             >Registrar nuevo Empleado</a
-          >
-          <a th:href="@{/empleado/view}" class="btn btn-primary"
-            >Reporte Empleados</a
-          >
-          <a th:href="@{/empleado/welcome}" class="btn btn-primary"
-            >Reporte Empleados inicio</a
           >
         </div>
         <table class="table table-dark table-hover center">

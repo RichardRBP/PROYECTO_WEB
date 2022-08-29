@@ -23,8 +23,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import com.ingenieriaweb.springboot.app.models.entity.Alumno;
 import com.ingenieriaweb.springboot.app.models.entity.Matricula;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
+import com.ingenieriaweb.springboot.app.models.service.IAlumnoService;
 import com.ingenieriaweb.springboot.app.models.service.IMatriculaService;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
@@ -42,6 +45,8 @@ public class MatriculaController {
     private IMatriculaService MatriculaService;
     @Autowired
     private IProfesorService profesorService;
+    @Autowired
+    private IAlumnoService alumnoService;
 
     @Autowired
     private IUploadFileService uploadFileService;
@@ -67,7 +72,7 @@ public class MatriculaController {
     @GetMapping(value = "/listar")
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
-        Pageable pageRequest = PageRequest.of(page, 5);
+        Pageable pageRequest = PageRequest.of(page, 4);
 
         Page<Matricula> matriculas = MatriculaService.findAll(pageRequest);
 
@@ -91,22 +96,11 @@ public class MatriculaController {
       //  model.addAttribute("page", pageRender);
         return "matricula/aceptar";
     }
-    
-    @GetMapping(value = "/form")
-    public String crear(Map<String, Object> model) {
-
+   
+    @GetMapping(value = "/aceptar/{id}")
+    public String aceptada(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
         List<Tarifa> tarifas = profesorService.findAllT();
-
-        Matricula matricula = new Matricula();
-        model.put("matricula", matricula);
-        model.put("tarifas", tarifas);
-        model.put("titulo", "Formulario de Matricula");
-        return "matricula/form";
-    }
-
-    @GetMapping(value = "/form/{id}")
-    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
-        List<Tarifa> tarifas = profesorService.findAllT();
+        List<Alumno> alumnos = profesorService.findAllAlu();
         Matricula matricula = null;
 
         if (id > 0) {
@@ -121,6 +115,59 @@ public class MatriculaController {
         }
         model.put("matricula", matricula);
         model.put("tarifas", tarifas);
+        model.put("alumnos", alumnos);
+        model.put("titulo", "Aceptar Matricula");
+        return "matricula/verificar";
+    }
+
+    @RequestMapping(value = "/form2", method = RequestMethod.POST)
+    public String actualizar(@Valid Matricula matricula, BindingResult result, Model model,  RedirectAttributes flash, SessionStatus status) {
+        Matricula matricula2 = null; 
+        matricula2 = MatriculaService.findOne(matricula.getId());
+       
+       
+        String mensajeFlash = (matricula.getId() != null) ? "Matricula Aceptada!" : "Matricula Aceptada!";
+        matricula2.setEstado("ACEPTADA")   ;
+        MatriculaService.save(matricula2);
+        status.setComplete();
+        flash.addFlashAttribute("success", mensajeFlash);
+        return "redirect:/matricula/aceptar";
+    }
+    
+    @GetMapping(value = "/form")
+    public String crear(Map<String, Object> model) {
+
+        List<Tarifa> tarifas = profesorService.findAllT();
+        List<Alumno> alumnos = alumnoService.findAll();
+        
+
+        Matricula matricula = new Matricula();
+        model.put("matricula", matricula);
+        model.put("alumnos", alumnos);
+        model.put("tarifas", tarifas);
+        model.put("titulo", "Formulario de Matricula");
+        return "matricula/form";
+    }
+
+    @GetMapping(value = "/form/{id}")
+    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
+        List<Tarifa> tarifas = profesorService.findAllT();
+        List<Alumno> alumnos = profesorService.findAllAlu();
+        Matricula matricula = null;
+
+        if (id > 0) {
+            matricula = MatriculaService.findOne(id);
+            if (matricula == null) {
+                flash.addFlashAttribute("error", "El ID del Matricula no existe en la BBDD!");
+                return "redirect:/matricula/listar";
+            }
+        } else {
+            flash.addFlashAttribute("error", "El ID del Matricula no puede ser cero!");
+            return "redirect:/matricula/listar";
+        }
+        model.put("matricula", matricula);
+        model.put("tarifas", tarifas);
+        model.put("alumnos", alumnos);
         model.put("titulo", "Editar Matricula");
         return "matricula/form";
     }
@@ -128,8 +175,10 @@ public class MatriculaController {
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String guardar(@Valid Matricula matricula, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) {
         List<Tarifa> tarifas = profesorService.findAllT();
+        List<Alumno> alumnos = profesorService.findAllAlu();
         if (result.hasErrors()) {
             model.addAttribute("tarifas", tarifas);
+            model.addAttribute("alumnos", alumnos);
             model.addAttribute("titulo", "Formulario de Matricula");
             return "/matricula/form";
         }

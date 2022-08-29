@@ -1,11 +1,13 @@
 package com.ingenieriaweb.springboot.app.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "alumnos")
@@ -51,6 +53,14 @@ public class Alumno implements Serializable {
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Carrera carrera;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Matricula> matriculas;
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
     public Long getId() {
         return id;
@@ -147,4 +157,17 @@ public class Alumno implements Serializable {
     public void setCarrera(Carrera carrera) {
         this.carrera = carrera;
     }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+
+    
+
+    
+    
 }

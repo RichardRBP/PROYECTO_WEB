@@ -38,6 +38,11 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import net.sf.jasperreports.export.SimplePdfReportConfiguration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,7 +117,30 @@ public class EmpleadoController {
         // If users want to download the pdf file on the browser, then they need to use the "Content-Disposition" technique.
         final String filePath = "d://";
         // Export the report to a PDF file.
-        JasperExportManager.exportReportToPdfFile(print, filePath + "Empleado_reporte.pdf");
+        //JasperExportManager.exportReportToPdfFile(print, filePath + "Empleado_reporte.pdf");
+        JRPdfExporter exporter = new JRPdfExporter();
+        
+///---------------------------------------
+exporter.setExporterInput(new SimpleExporterInput(print));
+exporter.setExporterOutput(
+  new SimpleOutputStreamExporterOutput("employeeReport.pdf"));
+
+SimplePdfReportConfiguration reportConfig
+  = new SimplePdfReportConfiguration();
+reportConfig.setSizePageToContent(true);
+reportConfig.setForceLineBreakPolicy(false);
+
+SimplePdfExporterConfiguration exportConfig
+  = new SimplePdfExporterConfiguration();
+exportConfig.setMetadataAuthor("baeldung");
+exportConfig.setEncrypted(true);
+exportConfig.setAllowedPermissionsHint("PRINTING");
+
+exporter.setConfiguration(reportConfig);
+exporter.setConfiguration(exportConfig);
+
+exporter.exportReport();
+
     }
     ////////////////////////////////////////////////////
     //metodo del empleado
