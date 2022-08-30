@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="banner-carrera">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header">
+            <a th:href="@{/carrera/form}" class="btn btn-primary">Registrar nueva Carrera</a>
+        </div>
+        <table class="table table-dark table-hover center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Carrera</th>
+                <th>Puntaje Promedio</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="carrera: ${carreras}">
+                <td th:text="${carrera.id}"></td>
+                <td th:text="${carrera.nombre}"></td>
+                <td th:text="${carrera.puntajePromedio}"></td>
+                <td><a class="btn btn-primary btn-sm"
+                       th:href="@{/carrera/form/} + ${carrera.id}" th:text="'editar'"></a></td>
+                <td><a class="btn btn-danger btn-sm"
+                       th:href="@{/carrera/eliminar/} + ${carrera.id}" th:text="'eliminar'"
+                       onclick="return confirm('Estás seguro que quieres eliminar esta carrera?');"></a></td>
+            </tr>
+            </tbody>
+        </table>
+        <nav th:replace="paginator-nav :: paginator"></nav>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
