@@ -253,6 +253,12 @@ public class ProfesorServiceImpl implements IProfesorService {
     }
 
     @Override
+        public List<Alumno> findByIngresante(String term) {
+        // TODO Auto-generated method stub
+        return alumnoDao.findByIngresanteLikeIgnoreCase("%" + term + "%");
+    }
+
+    @Override
     public List<Alumno> findAllAlu() {
         return (List<Alumno>) alumnoDao.findAll();
     }
