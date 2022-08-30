@@ -93,6 +93,8 @@ public interface IProfesorService {
 
     public List<Alumno> findByAlumno(String term);
 
+    public List<Alumno> findByIngresante(String term);
+
     public List<Alumno> findAllAlu();
 
     public Page<Alumno> findAllAlu(Pageable pageable);
