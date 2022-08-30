@@ -6,72 +6,63 @@
 
 <div class="banner-curso">
     <div class="container py-3">
-        <div class="card-body text-white bg-dark">
-            <div th:object="${curso}" th:remove="tag">
-                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-                    <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-                </ul>
+        <div class="card bg-dark" style="color:white;">
+            <div class="card-header" th:text="${titulo}"></div>
+            <div class="card-body">
+                <div th:object="${curso}" th:remove="tag">
+                    <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+                <form th:action="@{/curso/form}" th:object="${curso}" method="post" enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" th:field="*{nombre}" class="form-control"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Nivel</label>
+                            <input type="number" th:field="*{nivel}" class="form-control" id="nivel"
+                                   th:errorclass="'form-control is-invalid'"/>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nivel')}" th:errors="*{nivel}"></div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Etapa</label>
+                            <input type="text" th:field="*{etapa}" class="form-control"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('etapa')}" th:errors="*{etapa}"></small>
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Profesor</label>
+                            <select th:field="*{profesor.id}" class="form-control"
+                                    th:errorclass="'form-control alert-danger'">
+                                <div th:each="profesor :${profesores}">
+                                    <option th:value="${profesor.id}">
+                                        [[${profesor.nombre}]] [[${profesor.apellido}]]
+                                    </option>
+                                </div>
+                            </select>
+                            <small class="form-text text-danger"
+                                   th:if="${#fields.hasErrors('profesor')}" th:errors="*{profesor}"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-12 col-lg-6 mb-5" style="text-align: center;">
+                            <input type="submit" value="Crear Curso" class="btn btn-success"/>
+                        </div>
+                        <div class="col-xs-12 col-lg-6 mb-5" style="text-align: center;">
+                            <a th:href="@{/curso/listar}">
+                                <input value="Cancelar" class="btn btn-dark"/></a>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <form th:action="@{/curso/form}" th:object="${curso}" method="post" enctype="multipart/form-data">
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nombre</label>
-                    <div class="col-sm-6">
-                        <input type="text" th:field="*{nombre}" class="form-control"
-                               th:errorclass="'form-control alert-danger'"/> <small
-                            class="form-text text-danger"
-                            th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="nivel" class="col-sm-2 col-form-label"
-                           th:text="'nivel'"></label>
-                    <div class="col-sm-6">
-                        <input type="number" th:field="*{nivel}" class="form-control" id="nivel"
-                               th:errorclass="'form-control is-invalid'"/>
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nivel')}" th:errors="*{nivel}"></div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Etapa</label>
-                    <div class="col-sm-6">
-                        <input type="text" th:field="*{etapa}" class="form-control"
-                               th:errorclass="'form-control alert-danger'"/> <small
-                            class="form-text text-danger"
-                            th:if="${#fields.hasErrors('etapa')}" th:errors="*{etapa}"></small>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Profesor</label>
-                    <div class="col-sm-6">
-                        <select th:field="*{profesor.id}" class="form-control"
-                                th:errorclass="'form-control alert-danger'">
-                            <div th:each="profesor :${profesores}">
-                                <option th:value="${profesor.id}">
-                                    [[${profesor.nombre}]] [[${profesor.apellido}]]
-                                </option>
-                            </div>
-                        </select>
-                        <small class="form-text text-danger"
-                               th:if="${#fields.hasErrors('profesor')}" th:errors="*{profesor}"></small>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-3" style="text-align: center;"></div>
-                    <div class="col-sm-3" style="text-align: center;">
-                        <input type="submit" value="Crear Curso" class="btn btn-success"/>
-                    </div>
-                    <div class="col-sm-3">
-                        <a th:href="@{/curso/listar}">
-                            <input value="Cancelar" class="btn btn-dark"/></a>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
-</div>
-<footer th:replace="layout/layout :: footer"></footer>
+    <footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

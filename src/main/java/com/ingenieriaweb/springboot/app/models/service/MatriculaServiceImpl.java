@@ -55,6 +55,12 @@ public class MatriculaServiceImpl implements IMatriculaService {
         return MatriculaDao.findByEstado();
     }
 
+	@Override
+	public List<Matricula> findAllAceptadas() {
+		// TODO Auto-generated method stub
+		 return  (List<Matricula>) MatriculaDao.findAllAceptadas();
+	}
+
 
     
 

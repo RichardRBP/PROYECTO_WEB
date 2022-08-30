@@ -13,4 +13,6 @@ public interface IAlumnoDao extends PagingAndSortingRepository<Alumno, Long> {
 
     public List<Alumno> findByNombresLikeIgnoreCase(String term);
 
+    public List<Alumno> findByIngresanteLikeIgnoreCase(String term);
+
 }

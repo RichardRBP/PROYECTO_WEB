@@ -3,6 +3,7 @@ package com.ingenieriaweb.springboot.app.controllers;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,20 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.ingenieriaweb.springboot.app.models.entity.Empleado;
+import com.ingenieriaweb.springboot.app.models.entity.Matricula;
 import com.ingenieriaweb.springboot.app.models.service.IEmpleadoService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
+import com.ingenieriaweb.springboot.app.reports.EmpleadoExporterPDF;
+import com.ingenieriaweb.springboot.app.reports.MatriculaExporterPDF;
+import com.lowagie.text.DocumentException;
+
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 ///////////////
 //importaciones para los reportes
 import net.sf.jasperreports.engine.JRException;
@@ -47,6 +56,7 @@ import net.sf.jasperreports.export.SimplePdfReportConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -250,5 +260,25 @@ exporter.exportReport();
         }
         return "redirect:/empleado/listar";
     }
+    
+    @GetMapping("/exportarPDF")
+    public void exportarListaEmpleadoPDF(HttpServletResponse response) throws DocumentException, IOException {
+    	response.setContentType("aplication/pdf");
+    	
+    	DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    	String fechaActual = dateFormatter.format(new Date());
+    	
+    	String cabecera = "Content-Disposition";
+    	String valor = "attachment; filename=Empleados_"+ fechaActual + ".pdf";
+    	
+    	response.setHeader(cabecera, valor);
+    	
+    	List<Empleado> empleados = EmpleadoService.findAll();
+    	
+    	EmpleadoExporterPDF exporter = new EmpleadoExporterPDF(empleados);
+    	exporter.exportar(response);
+    }
+    
+    
 }
 

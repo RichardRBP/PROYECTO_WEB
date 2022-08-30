@@ -2,6 +2,7 @@ package com.ingenieriaweb.springboot.app.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -57,6 +58,12 @@ public class Alumno implements Serializable {
     @JsonManagedReference
     @OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Matricula> matriculas;
+
+//    @NotEmpty
+//    @Value("#{systemProperties['some.key'] ?: 'NO'}")
+//    make default value of ingresante is NO
+    @Value("${alumno.ingresante:NO}")
+    private String ingresante;
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -166,8 +173,13 @@ public class Alumno implements Serializable {
         this.matriculas = matriculas;
     }
 
-    
+    public String getIngresante() {
+        return ingresante;
+    }
 
-    
+    public void setIngresante(String ingresante) {
+        this.ingresante = ingresante;
+    }
+
     
 }
