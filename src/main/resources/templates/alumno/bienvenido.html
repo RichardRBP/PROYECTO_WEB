@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layoutA :: head"></head>
+<body>
+<header th:replace="layout/layoutA :: header"></header>
+
+ <div class="row" >
+            <div class="col"> <h3  th:text="${titulo}" ></h3>   </div>
+            </div>
+             
+            
+<div class="banner-admin">
+    <a class="btn" th:href="@{/aula/listar}">GRUPO 08</a>
+    <p></p>
+    <a class="btn" th:href="@{/aula/listar}">» Ataucuri Ynfante, Isaac Daniel.</a>
+    <p></p>
+    <a class="btn" th:href="@{/aula/listar}">» Braul Porras, Richard Robert.</a>
+    <p></p>
+    <a class="btn" th:href="@{/aula/listar}">» Machuca Iparraguirre, Leodan.</a>
+    <p></p>
+    <a class="btn" th:href="@{/aula/listar}">» Valdivia Ramos, Roberto Jose.</a>
+    <p></p>
+    <a class="btn" th:href="@{/aula/listar}">» Villarroel Rodriguez, Leandro Nahuel.</a>
+    <p></p>
+    <a class="btn" th:href="@{/aula/listar}">Iniciemos</a>
+</div>
+
+<footer th:replace="layout/layoutA :: footer"></footer>
+</body>
+</html>

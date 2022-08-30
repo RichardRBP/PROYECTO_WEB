@@ -55,7 +55,7 @@ public class IndexController {
         List<Alumno> ingresantes = profesorService.findByIngresante(term);
 //		print lista de ingresantes in console
 //		Verifciacion de ingresantes
-        System.out.println("PRUEBA DE SALIDA >>>>>>>>>" + ingresantes);
+       // System.out.println("PRUEBA DE SALIDA >>>>>>>>>" + ingresantes);
         model.addAttribute("titulo", "Ingresantes 2022");
         model.addAttribute("ingresantes", ingresantes);
         return "index";

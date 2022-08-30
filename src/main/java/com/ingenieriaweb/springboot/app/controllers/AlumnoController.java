@@ -198,4 +198,11 @@ public class AlumnoController {
     	exporter.exportar(response);
     }
     
+    @GetMapping(value = "/alumnos")
+    public String vistaAlumno(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+
+        model.addAttribute("titulo", "Bienvenido Alumno");
+        return "alumno/bienvenido";
+    }
+    
 }

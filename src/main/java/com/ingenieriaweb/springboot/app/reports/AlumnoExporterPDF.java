@@ -52,7 +52,7 @@ public class AlumnoExporterPDF {
 		celda.setPhrase(new Phrase("Carrera",fuente));
 		tabla.addCell(celda); 
 		
-		celda.setPhrase(new Phrase("Ciclo",fuente));
+		celda.setPhrase(new Phrase("Ciclo",fuente)); 
 		tabla.addCell(celda); 
 		
 		
