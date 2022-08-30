@@ -1,10 +1,15 @@
 package com.ingenieriaweb.springboot.app.controllers;
 
 
+import com.ingenieriaweb.springboot.app.models.entity.Empleado;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
+import com.ingenieriaweb.springboot.app.reports.EmpleadoExporterPDF;
+import com.ingenieriaweb.springboot.app.reports.ProfesorExporterPDF;
+import com.lowagie.text.DocumentException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -20,9 +25,14 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -154,4 +164,22 @@ public class ProfesorController {
         return "redirect:/profesor/listar";
     }
 
+    @GetMapping("/exportarPDF")
+    public void exportarListaMatriculaPDF(HttpServletResponse response) throws DocumentException, IOException {
+    	response.setContentType("aplication/pdf");
+    	
+    	DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    	String fechaActual = dateFormatter.format(new Date());
+    	
+    	String cabecera = "Content-Disposition";
+    	String valor = "attachment; filename=Profesor_"+ fechaActual + ".pdf";
+    	
+    	response.setHeader(cabecera, valor);
+    	
+    	List<Profesor> profesores = profesorService.findAllP();
+    	
+    	ProfesorExporterPDF exporter = new ProfesorExporterPDF(profesores);
+    	exporter.exportar(response);
+    }
+    
 }

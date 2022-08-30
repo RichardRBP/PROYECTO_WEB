@@ -1,9 +1,11 @@
 package com.ingenieriaweb.springboot.app.controllers;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,14 @@ import com.ingenieriaweb.springboot.app.models.service.IMatriculaService;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
+import com.ingenieriaweb.springboot.app.reports.MatriculaExporterPDF;
+import com.lowagie.text.DocumentException;
+
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/matricula")
@@ -220,4 +227,24 @@ public class MatriculaController {
         }
         return "redirect:/matricula/listar";
     }
+    
+    @GetMapping("/exportarPDF")
+    public void exportarListaMatriculaPDF(HttpServletResponse response) throws DocumentException, IOException {
+    	response.setContentType("aplication/pdf");
+    	
+    	DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    	String fechaActual = dateFormatter.format(new Date());
+    	
+    	String cabecera = "Content-Disposition";
+    	String valor = "attachment; filename=Matriculas_"+ fechaActual + ".pdf";
+    	
+    	response.setHeader(cabecera, valor);
+    	
+    	List<Matricula> matriculas = MatriculaService.findAllAceptadas();
+    	
+    	MatriculaExporterPDF exporter = new MatriculaExporterPDF(matriculas);
+    	exporter.exportar(response);
+    }
+    
+    
 }
