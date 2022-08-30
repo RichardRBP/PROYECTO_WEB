@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layoutA2 :: head"></head>
+<body>
+
+<div class="d-flex align-items-center justify-content-between">
+        <nav>
+            <a th:href="@{/matricula/bienvenido/}+ ${dni}">Inicio</a>
+            <a th:href="@{/matricula/formAlumno/}+ ${dni}">Matricula</a>
+            <a th:href="@{/detalle/listar}">Notas</a>
+             <a th:href="@{/alumno/misdatos/}+ ${dni}">Mis Datos</a>
+            <a th:href="@{/alumno/alumnos}">Salir</a>
+        </nav>
+    </div>
+<header th:replace="layout/layoutA2 :: header"></header>
+<div class="banner-alumno">
+    <div class="container py-3">
+        <div class="card bg-dark" style="color:white;">
+            <div class="card-header" >[[${titulo}]] : [[${alumno.nombres}]] , [[${alumno.apellidos}]]</div>
+            <div class="card-body">
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer th:replace="layout/layoutA2 :: footer"></footer>
+</body>
+</html>
