@@ -23,7 +23,7 @@
                         <div class="col-sm-6 col-lg-4 mb-5">
                             <label class="form-label">Alumno</label>
                             <select th:field="*{alumno.id}" class="form-control"
-                                    th:errorclass="'form-control alert-danger'">
+                                    th:errorclass="'form-control alert-danger'" >
                                 <div th:each="alumno :${alumnos}">
                                     <option th:value="${alumno.id}">
                                         [[${alumno.nombres}]] , [[${alumno.apellidos}]]
@@ -89,7 +89,7 @@
                         <div class="col-sm-6 col-lg-4 mb-5">
                             <label class="form-label">Tarifa</label>
                             <select th:field="*{tarifa.id}" class="form-control"
-                                    th:errorclass="'form-control alert-danger'">
+                                    th:errorclass="'form-control alert-danger'" >
                                 <div th:each="tarifa :${tarifas}">
                                     <option th:value="${tarifa.id}">
                                         [[${tarifa.precio}]] soles -[[${tarifa.nombre}]]
