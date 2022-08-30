@@ -9,6 +9,8 @@ public interface IMatriculaService {
     
     public List<Matricula> findAll();
 
+	public List<Matricula> findAllAceptadas();
+
     public Page<Matricula> findAll(Pageable pageable);
 
     public List<Matricula> findByEstado();
