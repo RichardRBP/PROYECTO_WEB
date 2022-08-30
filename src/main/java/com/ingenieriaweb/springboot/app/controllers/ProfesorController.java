@@ -165,7 +165,7 @@ public class ProfesorController {
     }
 
     @GetMapping("/exportarPDF")
-    public void exportarListaMatriculaPDF(HttpServletResponse response) throws DocumentException, IOException {
+    public void exportarListaProfesorPDF(HttpServletResponse response) throws DocumentException, IOException {
     	response.setContentType("aplication/pdf");
     	
     	DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");

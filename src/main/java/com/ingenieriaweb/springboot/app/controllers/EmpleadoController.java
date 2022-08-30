@@ -262,7 +262,7 @@ exporter.exportReport();
     }
     
     @GetMapping("/exportarPDF")
-    public void exportarListaMatriculaPDF(HttpServletResponse response) throws DocumentException, IOException {
+    public void exportarListaEmpleadoPDF(HttpServletResponse response) throws DocumentException, IOException {
     	response.setContentType("aplication/pdf");
     	
     	DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");

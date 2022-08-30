@@ -2,10 +2,15 @@ package com.ingenieriaweb.springboot.app.controllers;
 
 import com.ingenieriaweb.springboot.app.models.entity.Alumno;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
+import com.ingenieriaweb.springboot.app.models.service.IAlumnoService;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
 import com.ingenieriaweb.springboot.app.models.service.ITipoAlumnoService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
+import com.ingenieriaweb.springboot.app.reports.AlumnoExporterPDF;
+import com.ingenieriaweb.springboot.app.reports.ProfesorExporterPDF;
+import com.lowagie.text.DocumentException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -21,9 +26,14 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -37,6 +47,10 @@ public class AlumnoController {
     @Autowired
     private IProfesorService profesorService;
 
+    @Autowired
+    private IAlumnoService alumnoService;
+
+    
     @Autowired
     private IUploadFileService uploadFileService;
 
@@ -166,4 +180,22 @@ public class AlumnoController {
         return "redirect:/alumno/listar";
     }
 
+    @GetMapping("/exportarPDF")
+    public void exportarListaAlumnoPDF(HttpServletResponse response) throws DocumentException, IOException {
+    	response.setContentType("aplication/pdf");
+    	
+    	DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    	String fechaActual = dateFormatter.format(new Date());
+    	
+    	String cabecera = "Content-Disposition";
+    	String valor = "attachment; filename=Alumno_"+ fechaActual + ".pdf";
+    	
+    	response.setHeader(cabecera, valor);
+    	
+    	List<Alumno> alumnos = alumnoService.findAll();
+    	
+    	AlumnoExporterPDF exporter = new AlumnoExporterPDF(alumnos);
+    	exporter.exportar(response);
+    }
+    
 }
