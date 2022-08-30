@@ -64,7 +64,7 @@ public class AlumnoController {
 
         Alumno alumno = profesorService.findOneAlu(id);
         if (alumno == null) {
-            flash.addFlashAttribute("error", "El profesor no existe en la base de datos");
+            flash.addFlashAttribute("error", "El alumno no existe en la base de datos");
             return "redirect:/alumno/listar";
         }
 

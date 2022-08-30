@@ -36,8 +36,8 @@
                     <button class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
                             type="button"
                             style="transition: all 0.15s ease 0s;">
-                        <a th:href="@{/login}">
-                            Iniciar sesión
+                        <a th:href="@{/logout}">
+                            Salir Sesión
                         </a>
                     </button>
                 </li>
@@ -246,55 +246,22 @@
         </div>
         <div class="container mx-auto px-4 reveal">
             <div class="items-center flex flex-wrap">
-<!--                <div class="w-full md:w-4/12 ml-auto mr-auto px-4">-->
-<!--                    <img alt="..."-->
-<!--                         class="max-w-full rounded-lg shadow-lg"-->
-<!--                         src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80"/>-->
-<!--                </div>-->
                 <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
                     <div class="md:pr-12">
-                        <div class="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
-                            <i class="fas fa-rocket text-xl"></i>
+                        <h3 class="text-4xl font-bold">INGRESANTES 2022-II</h3>
+                        <br>
+                        <div th:each="ingresante : ${ingresantes}">
+                            <div class="full blog_img_popular reveal" th:if="${ingresante?.getFoto()}">
+                                <img th:if="${#strings.length(ingresante.getFoto()) > 0}"
+                                     class="img-responsive"
+                                     th:src="@{'alumno/uploads/' + ${ingresante.getFoto()}}"
+                                     th:alt="${ingresante.getFoto()}" alt="First Slide"/>
+                                <br>
+                                <h4 th:text="${ingresante.nombres + ' ' + ingresante.apellidos + ' - ' + ingresante.edad + ' años'}"></h4>
+                                <h5 class="text-3xl mb-2 font-bold leading-normal" th:text="${ingresante.carrera.nombre}"></h5>
+                                <h5 class="text-3xl mb-2 font-bold leading-normal" th:text="${ingresante.tipoAlumno.nombreTipo}"></h5>
+                            </div>
                         </div>
-                        <h3 class="text-3xl font-semibold">INGRESANTES  2022-II:</h3>
-                        <table class="table table-dark table-hover center">
-                            <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-<!--                                <th>foto</th>-->
-                                <th>Dni</th>
-                                <th>Edad</th>
-                                <th>Carrera</th>
-                                <th>Tipo</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="ingresante: ${ingresantes}">
-                                <td th:text="${ingresante.nombres}"></td>
-                                <td th:text="${ingresante.apellidos}"></td>
-<!--                                <td th:if="${ingresante?.foto}" style="max-width: 180px;"><img th:if="${#strings.length(ingresante.foto) > 0}"-->
-<!--                                                                                           class="img-thumbnail rounded float-left"-->
-<!--                                                                                           style="max-width: 100%;"-->
-<!--                                                                                           th:src="@{'/uploads/' + ${ingresante.foto}}"-->
-<!--                                                                                           th:alt="${ingresante.foto}"/>-->
-<!--                                </td>-->
-<!--                                <td th:unless="${ingresante?.foto}"  > Sin Foto </td>-->
-                                <td th:text="${ingresante.dni}"></td>
-                                <td th:text="${ingresante.edad}"></td>
-                                <td th:text="${ingresante.carrera.nombre}"></td>
-                                <td th:text="${ingresante.tipoAlumno.nombreTipo}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <p class="mt-4 text-lg leading-relaxed text-gray-600">
-<!--                            Si bien es cierto el lugar de mayor influencia en la educación, es el hogar; también, es-->
-<!--                            real que nuestra institución preuniversitaria, cumple un rol fundamental en la misma.-->
-<!--                            Tenemos la inmensa responsabilidad de escucharlos y reorientarlos cuando sea necesario, todo-->
-<!--                            esto gracias a una excelente convivencia: alumnos, docentes, administrativos y director; por-->
-<!--                            eso nos consideramos una sola FAMILIA.-->
-                        </p>
                     </div>
                 </div>
             </div>
@@ -357,12 +324,11 @@
                 <div class="w-full lg:w-6/12 px-4">
                     <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300">
                         <div class="flex-auto p-5 lg:p-10">
-                            <h4 class="text-2xl font-semibold">Aquí te dejé este espacio para que pongas tu por ahí
-                                RICHI xd</h4>
+                            <h4 class="text-2xl font-semibold">Déjanos tus comentarios</h4>
 
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                                       for="message">POR AQUÍ</label>
+                                       for="message">Mensaje</label>
                                 <textarea rows="4"
                                           cols="80"
                                           class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
@@ -374,7 +340,7 @@
                                 <button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                                         type="button"
                                         style="transition: all 0.15s ease 0s;">
-                                    POR AHÍ
+                                    ENVIAR
                                 </button>
                             </div>
                         </div>
@@ -420,6 +386,7 @@
 </script>
 <script type="text/javascript">
     window.addEventListener('scroll', reveal);
+
     function reveal() {
         var reveals = document.querySelectorAll('.reveal');
 
