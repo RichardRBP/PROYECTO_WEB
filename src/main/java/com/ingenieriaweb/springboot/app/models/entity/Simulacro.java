@@ -34,7 +34,7 @@ public class Simulacro implements Serializable{
 
     @JsonManagedReference
     @OneToMany(mappedBy = "simulacro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Matricula_Simulacro> matriculas_simulacro;
+    private List<MatriculaSimulacro> matriculassimulacro;
 
 	public Long getId() {
 		return id;
@@ -60,12 +60,12 @@ public class Simulacro implements Serializable{
 		Fecha = fecha;
 	}
 
-	public List<Matricula_Simulacro> getMatriculas_simulacro() {
-		return matriculas_simulacro;
+	public List<MatriculaSimulacro> getMatriculas_simulacro() {
+		return matriculassimulacro;
 	}
 
-	public void setMatriculas_simulacro(List<Matricula_Simulacro> matriculas_simulacro) {
-		this.matriculas_simulacro = matriculas_simulacro;
+	public void setMatriculas_simulacro(List<MatriculaSimulacro> matriculas_simulacro) {
+		this.matriculassimulacro = matriculas_simulacro;
 	}
 
 	public static long getSerialversionuid() {
