@@ -30,11 +30,11 @@ public class Simulacro implements Serializable{
     private String nombre;
     
     @NotEmpty
-    private Date Fecha;
+    private String Fecha;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "simulacro", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<MatriculaSimulacro> simulacro;
+    private List<MatriculaSimulacro> matriculassimulacro;
 
 	public Long getId() {
 		return id;
@@ -52,25 +52,27 @@ public class Simulacro implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return Fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		Fecha = fecha;
 	}
 
-	public List<MatriculaSimulacro> getMatriculas_simulacro() {
-		return simulacro;
+	public List<MatriculaSimulacro> getMatriculassimulacro() {
+		return matriculassimulacro;
 	}
 
-	public void setMatriculas_simulacro(List<MatriculaSimulacro> matriculas_simulacro) {
-		this.simulacro = matriculas_simulacro;
+	public void setMatriculassimulacro(List<MatriculaSimulacro> matriculassimulacro) {
+		this.matriculassimulacro = matriculassimulacro;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	
     
     
 

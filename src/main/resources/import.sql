@@ -63,10 +63,10 @@ insert into aulas (aula,area_id,curso_id) values ('M',1,2);
 insert into aulas (aula,area_id,curso_id) values ('O',3,1);
 insert into aulas (aula,area_id,curso_id) values ('P',4,3);
 
-INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa 5to Secundaria','Tarifa para los alumnos de 5to Secundaria', 544.21,4,1);
-INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Verano','Tarifa para los alumnos de Verano', 700.21,1,2);
-INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 852.24,2,2);
-INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Cepunt','Tarifa para los alumnos de Cepunt', 852.24,2,3);
+INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa 5to Secundaria','Tarifa para los alumnos de 5to Secundaria', 550,4,1);
+INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Verano','Tarifa para los alumnos de Verano', 700,1,2);
+INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Semestral','Tarifa para los alumnos de Semestre', 850,2,2);
+INSERT INTO tarifas (nombre,descripcion,precio,ciclo_id,tipo_alumno_id) VALUES ('Tarifa Cepunt','Tarifa para los alumnos de Cepunt', 900,2,3);
 
 insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id,alumno_id) values (9465243,'2022-08-08','Interbank',500,'','RESERVADA','TARDE',1,1);
 insert into matriculas (codigo_operacion,fecha_operacion,banco,monto,foto,estado,turno,tarifa_id,alumno_id) values (9465243,'2022-08-08','BCP',500,'','ACEPTADA','NOCHE',1,1);

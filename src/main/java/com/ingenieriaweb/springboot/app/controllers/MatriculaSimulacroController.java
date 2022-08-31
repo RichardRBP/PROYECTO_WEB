@@ -68,8 +68,8 @@ public class MatriculaSimulacroController {
         List<Matricula> matriculas = matriculaService.findAllAceptadas();
         List<Simulacro> simulacros = simulacroService.findAll();
 
-        MatriculaSimulacro matriculasimulacros = new MatriculaSimulacro();
-        model.put("matriculasimulacros", matriculasimulacros);
+        MatriculaSimulacro matriculasimulacro = new MatriculaSimulacro();
+        model.put("matriculasimulacro", matriculasimulacro);
         model.put("matriculas", matriculas);
         model.put("simulacros", simulacros);
         model.put("titulo", "Formulario de Matricula Simulacro");

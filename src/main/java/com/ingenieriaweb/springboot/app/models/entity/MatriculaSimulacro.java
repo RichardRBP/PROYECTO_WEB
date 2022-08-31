@@ -18,10 +18,10 @@ public class MatriculaSimulacro implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotNull
     private Integer pcorrecta;
 
-    @NotEmpty
+    @NotNull
     private Integer pincorrecta;
 
     @NotNull

@@ -19,97 +19,61 @@
                 <form th:action="@{/matriculasimulacro/form}" th:object="${matriculasimulacro}" method="post"
                       enctype="multipart/form-data">
                     <div class="form-group row">
+                    <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Simulacro</label>
+                            <select th:field="*{simulacro.id}" class="form-control"
+                                    th:errorclass="'form-control alert-danger'" >
+                                <div th:each="simulacro :${simulacros}">
+                                    <option th:value="${simulacro.id}">
+                                        [[${simulacro.nombre}]] , [[${simulacro.fecha}]]
+                                    </option>
+                                </div>
+                            </select>
+                            <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('simulacro')}" th:errors="*{simulacro}"></small>
+                        </div>
+                    
                         <div class="col-sm-6 col-lg-4 mb-5">
                             <label class="form-label">Alumno</label>
-                            <select th:field="*{matricula.alumno.id}" class="form-control"
+                            <select th:field="*{matricula.id}" class="form-control"
                                     th:errorclass="'form-control alert-danger'" >
                                 <div th:each="matricula :${matriculas}">
-                                    <option th:value="${matricula.alumno.id}">
+                                    <option th:value="${matricula.id}">
                                         [[${matricula.alumno.nombres}]] , [[${matricula.alumno.apellidos}]]
                                     </option>
                                 </div>
                             </select>
                             <small
                                     class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('alumno')}" th:errors="*{alumno}"></small>
+                                    th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></small>
                         </div>
+                        
                         <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">Codigo Operacion</label>
-                            <input type="number" th:field="*{codigoOperacion}" class="form-control"
+                            <label class="form-label">Preguntas Correctas</label>
+                            <input type="number" th:field="*{pcorrecta}" class="form-control"
                                    th:errorclass="'form-control alert-danger'"/> <small
                                 class="form-text text-danger"
-                                th:if="${#fields.hasErrors('codigoOperacion')}" th:errors="*{codigoOperacion}"></small>
+                                th:if="${#fields.hasErrors('pcorrecta')}" th:errors="*{pcorrecta}"></small>
                         </div>
                         <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">fechaOperacion</label>
-                            <input type="date" th:field="*{fechaOperacion}" class="form-control"
+                            <label class="form-label">Preguntas InCorrectas</label>
+                            <input type="number" th:field="*{pincorrecta}" class="form-control"
                                    th:errorclass="'form-control alert-danger'"/> <small
                                 class="form-text text-danger"
-                                th:if="${#fields.hasErrors('fechaOperacion')}" th:errors="*{fechaOperacion}"></small>
+                                th:if="${#fields.hasErrors('pincorrecta')}" th:errors="*{pincorrecta}"></small>
                         </div>
                         <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">Banco</label>
-                            <input type="text" th:field="*{banco}" class="form-control"
+                            <label class="form-label">Nota</label>
+                            <input type="number" th:field="*{nota}" class="form-control"
                                    th:errorclass="'form-control alert-danger'"/> <small
                                 class="form-text text-danger"
-                                th:if="${#fields.hasErrors('banco')}" th:errors="*{banco}"></small>
+                                th:if="${#fields.hasErrors('nota')}" th:errors="*{nota}"></small>
                         </div>
-                        <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">Monto</label>
-                            <input type="number" class="form-control" th:field="*{monto}"
-                                   th:errorclass="'form-control alert-danger'"/> <small
-                                class="form-text text-danger"
-                                th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}"></small>
-                        </div>
-
-                        <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">Estado</label>
-                            <select name="estado" id="estado" class="form-control"
-                                    th:errorclass="'form-control alert-danger'">
-                                <option th:field="*{estado}" value="RESERVADA">RESERVADA</option>
-                                <option th:field="*{estado}" value="ACEPTADA">ACEPTADA</option>
-                            </select>
-                            <small
-                                    class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">Turno</label>
-                            <select name="turno" id="turno" class="form-control"
-                                    th:errorclass="'form-control alert-danger'">
-                                <option th:field="*{turno}" value="MA�ANA">MA�ANA</option>
-                                <option th:field="*{turno}" value="TARDE">TARDE</option>
-                                <option th:field="*{turno}" value="NOCHE">NOCHE</option>
-                            </select>
-                            <small
-                                    class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('turno')}" th:errors="*{turno}"></small>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">Tarifa</label>
-                            <select th:field="*{tarifa.id}" class="form-control"
-                                    th:errorclass="'form-control alert-danger'" >
-                                <div th:each="tarifa :${tarifas}">
-                                    <option th:value="${tarifa.id}">
-                                        [[${tarifa.precio}]] soles -[[${tarifa.nombre}]]
-                                    </option>
-                                </div>
-                            </select>
-                            <small
-                                    class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('tarifa')}" th:errors="*{tarifa}"></small>
-                        </div>
-
-
-                        <div class="col-sm-6 col-lg-4 mb-5">
-                            <label class="form-label">Foto</label>
-                            <input type="file" name="file" class="form-control"/>
-                        </div>
-                    </div>
 
                     <div class="form-group row">
                         <div class="col-xs-12 col-lg-6 mb-5" style="text-align: center;">
-                            <input id="aceptar" name="aceptar" type="submit" value="Agregar Matricula"
+                            <input id="aceptar" name="aceptar" type="submit" value="Agregar Nota"
                                    class="btn btn-success"/>
                         </div>
                         <div class="col-xs-12 col-lg-6 mb-5" style="text-align: center;">

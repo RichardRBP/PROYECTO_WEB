@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="banner-carrera">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header">
+            <a th:href="@{/simulacro/form}" class="btn btn-primary">Registrar nuevo Simulacro</a>
+        </div>
+        <table class="table table-dark table-hover center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="simulacro: ${simulacros}">
+                <td th:text="${simulacro.id}"></td>
+                <td th:text="${simulacro.nombre}"></td>
+                <td th:text="${simulacro.Fecha}"></td>
+                <td><a class="btn btn-primary btn-sm"
+                       th:href="@{/simulacro/form/} + ${simulacro.id}" th:text="'editar'"></a></td>
+                <td><a class="btn btn-danger btn-sm"
+                       th:href="@{/simulacro/eliminar/} + ${simulacro.id}" th:text="'eliminar'"
+                       onclick="return confirm('Estás seguro que quieres eliminar este simulacro?');"></a></td>
+            </tr>
+            </tbody>
+        </table>
+        <nav th:replace="paginator-nav :: paginator"></nav>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
