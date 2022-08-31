@@ -16,7 +16,7 @@ public interface IAlumnoDao extends PagingAndSortingRepository<Alumno, Long> {
 
     public List<Alumno> findByIngresanteLikeIgnoreCase(String term);
 
-    @Query("select p from Alumno p where p.dni = ?1")  
+   // @Query("select p from Alumno p where p.dni = ?1")  
 	public Optional<Alumno> findByDni(String dni);
 
 }
