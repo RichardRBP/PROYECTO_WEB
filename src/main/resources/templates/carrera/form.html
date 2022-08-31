@@ -18,9 +18,19 @@
                     <label for="carrera" class="col-md-2 col-form-label"
                            th:text="'Carrera'"></label>
                     <div class="col-md-5">
-                        <input type="text" th:field="*{carrera}" class="form-control" id="nombre"
+                        <input type="text" th:field="*{nombre}" class="form-control" id="nombre"
                                th:errorclass="'form-control is-invalid'"/>
                         <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 d-none d-md-block"></label>
+                    <label for="carrera" class="col-md-2 col-form-label"
+                           th:text="'Carrera'"></label>
+                    <div class="col-md-5">
+                        <input type="number" th:field="*{puntajePromedio}" class="form-control" id="nombre"
+                               th:errorclass="'form-control is-invalid'"/>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('puntajePromedio')}" th:errors="*{puntajePromedio}"></div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -34,6 +44,7 @@
                             <input value="Cancelar" class="btn btn-dark"/></a>
                     </div>
                 </div>
+                
             </form>
         </div>
     </div>
