@@ -30,34 +30,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
+    String[] resources = new String[]{
+    		"/index","/","/images/**","/css/**","/csss/**","/js/**","/login/**","/**/uploads/**"
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers(resources).permitAll()
                 .antMatchers("/index").hasAnyRole("ADMIN", "ALUMNO")
-                .antMatchers("//**").hasAnyRole("CUSTOMER", "DENTIST", "ADMIN")
-                .antMatchers("/customers/all").hasRole("ADMIN")
-                .antMatchers("/dentists/new").hasRole("ADMIN")
-                //.antMatchers("/invoices/all").hasRole("ADMIN")
-                .antMatchers("/dentists/all").hasRole("ADMIN")
-                .antMatchers("/customers/**").hasAnyRole("CUSTOMER", "ADMIN")
-                .antMatchers("/dentists/availability/**").hasRole("DENTIST")
-                .antMatchers("/dentists/**").hasAnyRole("DENTIST", "ADMIN")
-                .antMatchers("/works/**").hasRole("ADMIN")
-                //.antMatchers("/exchange/**").hasRole("CUSTOMER")
-                .antMatchers("/appointment/new/**").hasRole("CUSTOMER")
-                .antMatchers("/appointment/**").hasAnyRole("CUSTOMER", "DENTIST", "ADMIN")
-                //.antMatchers("/invoices/**").hasAnyRole("CUSTOMER", "DENTIST", "ADMIN")
+                .antMatchers("/admin").hasAnyRole("ADMIN")
+                .antMatchers("/alumno/**").hasAnyRole("ADMIN","ALUMNO")
+                .antMatchers("/area/**").hasAnyRole("ADMIN")
+                .antMatchers("/aula/**").hasAnyRole("ADMIN")
+                .antMatchers("/carrera/**").hasAnyRole("ADMIN")
+                .antMatchers("/ciclo/**").hasAnyRole("ADMIN")
+                .antMatchers("/curso/**").hasAnyRole("ADMIN")
+                .antMatchers("/empleado/**").hasAnyRole("ADMIN")
+                .antMatchers("/matricula/**").hasAnyRole("ADMIN","ALUMNO")
+                .antMatchers("/profesor/**").hasAnyRole("ADMIN")
+                .antMatchers("/tarifa/**").hasAnyRole("ADMIN")
+                .antMatchers("/tipoAlumno/**").hasAnyRole("ADMIN")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login") // nuestro login
                 .loginProcessingUrl("/admin/perform_login") // si quiero lo borro
-           
-                .defaultSuccessUrl("/index/")// a donde chucha quiere que vaya
+                .defaultSuccessUrl("/admin/")// a donde chucha quiere que vaya
+                .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
-                .logout().logoutUrl("/admin/perform_logout")// a donde se sale
+                .logout().logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/admin/access-denied");
     }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IAlumnoDao extends PagingAndSortingRepository<Alumno, Long> {
 
@@ -14,5 +15,8 @@ public interface IAlumnoDao extends PagingAndSortingRepository<Alumno, Long> {
     public List<Alumno> findByNombresLikeIgnoreCase(String term);
 
     public List<Alumno> findByIngresanteLikeIgnoreCase(String term);
+
+    @Query("select p from Alumno p where p.dni = ?1")  
+	public Optional<Alumno> findByDni(String dni);
 
 }

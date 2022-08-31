@@ -1,6 +1,8 @@
 package com.ingenieriaweb.springboot.app.controllers;
 
 import com.ingenieriaweb.springboot.app.models.entity.Alumno;
+import com.ingenieriaweb.springboot.app.models.entity.Dni;
+import com.ingenieriaweb.springboot.app.models.entity.Matricula;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.service.IAlumnoService;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
@@ -199,10 +201,29 @@ public class AlumnoController {
     }
     
     @GetMapping(value = "/alumnos")
-    public String vistaAlumno(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-
-        model.addAttribute("titulo", "Bienvenido Alumno");
+    public String vistaAlumno(Map<String, Object> model) {
+ 
+        Dni dni = new Dni(); 
+        model.put("titulo", "Ingresar como Alumno");
+        model.put("dni", dni); 
         return "alumno/bienvenido";
     }
+    
+    @GetMapping(value = "/misdatos/{dni}")
+    public String verAlumno(@PathVariable(value = "dni") String dni, Map<String, Object> model, RedirectAttributes flash) {
+
+        Alumno alumno = alumnoService.findByDni(dni);
+        if (alumno == null) {
+            flash.addFlashAttribute("error", "El alumno no existe en la base de datos");
+            return "redirect:/alumno/listar";
+        }
+
+        model.put("alumno", alumno);
+        model.put("dni", dni);
+        model.put("tipoAlumno", tipoAlumnoService.findAll());
+        model.put("carrera", profesorService.findAllCar());
+        return "alumno/Datos";
+    }
+    
     
 }
