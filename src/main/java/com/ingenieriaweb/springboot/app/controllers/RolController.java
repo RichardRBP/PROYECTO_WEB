@@ -18,7 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import com.ingenieriaweb.springboot.app.models.entity.Rol;
+import com.ingenieriaweb.springboot.app.models.entity.Role;
 import com.ingenieriaweb.springboot.app.models.service.IRolService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
 import com.ingenieriaweb.springboot.app.paginator.PageRender;
@@ -39,9 +39,9 @@ public class RolController {
 
         Pageable pageRequest = PageRequest.of(page, 5);
 
-        Page<Rol> roles = RolService.findAll(pageRequest);
+        Page<Role> roles = RolService.findAll(pageRequest);
 
-        PageRender<Rol> pageRender = new PageRender<Rol>("/rol/listar", roles);
+        PageRender<Role> pageRender = new PageRender<Role>("/rol/listar", roles);
         model.addAttribute("titulo", "Listado de Roles");
         model.addAttribute("roles", roles);
         model.addAttribute("page", pageRender);
@@ -51,7 +51,7 @@ public class RolController {
     @GetMapping(value = "/form")
     public String crear(Map<String, Object> model) {
 
-        Rol rol = new Rol();
+        Role rol = new Role();
         model.put("rol", rol);
         model.put("titulo", "Formulario de Rol");
         return "rol/form";
@@ -60,7 +60,7 @@ public class RolController {
     @GetMapping(value = "/form/{id}")
     public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
-        Rol rol = null;
+        Role rol = null;
 
         if (id > 0) {
             rol = RolService.findOne(id);
@@ -78,7 +78,7 @@ public class RolController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String guardar(@Valid Rol rol, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
+    public String guardar(@Valid Role rol, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Formulario de Rol");
             return "/rol/form";

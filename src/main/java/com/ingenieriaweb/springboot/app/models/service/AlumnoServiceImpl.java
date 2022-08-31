@@ -54,4 +54,12 @@ public class AlumnoServiceImpl  implements IAlumnoService{
         
     }
 
+
+
+	@Override
+	public Alumno findByDni(String dni) {
+		// TODO Auto-generated method stub
+		return AlumnoDao.findByDni(dni).orElse(null);
+	}
+
 }

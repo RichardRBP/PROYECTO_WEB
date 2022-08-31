@@ -30,9 +30,9 @@ public class MatriculaSimulacro implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Matricula matricula;
 
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Simulacro simulacro;
-
     public Long getId() {
         return id;
     }

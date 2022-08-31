@@ -36,7 +36,7 @@
                 <td th:text="${alumno.id}"></td>
                 <td th:text="${alumno.nombres}"></td>
                 <td th:text="${alumno.apellidos}"></td>
-                <td th:if="${alumno?.foto}" style="max-width: 180px;"><img th:if="${#strings.length(alumno.foto) > 0}"
+                <td th:if="${alumno?.foto}" style="max-width: 80px;"><img th:if="${#strings.length(alumno.foto) > 0}"
                                                                             class="img-thumbnail rounded float-left"
                                                                             style="max-width: 100%;"
                                                                             th:src="@{'/uploads/' + ${alumno.foto}}"

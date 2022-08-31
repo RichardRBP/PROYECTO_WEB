@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layoutA2 :: head"></head>
+<body>
+<div class="d-flex align-items-center justify-content-between">
+        <nav>
+           <a th:href="@{/matricula/bienvenido/}+ ${dni}">Inicio</a>
+            <a th:href="@{/matricula/formAlumno/}+ ${dni}">Matricula</a>
+            <a th:href="@{/detalle/listar}">Notas</a>
+             <a th:href="@{/alumno/misdatos/}+ ${dni}">Mis Datos</a>
+            
+            <a th:href="@{/alumno/alumnos}">Salir</a>
+        </nav>
+    </div>
+<header th:replace="layout/layoutA2 :: header"></header>
+
+<div class="banner-alumno">
+    <div class="container py-3">
+        <div class="card bg-dark" style="color:white;"> 
+            <div class="card-body">
+                <form  >
+                    <div class="form-group row">
+                    	<div class="col-xs-12 col-lg-6 mb-5">
+                    	<div class="form-group row">
+                    		<div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Nombres</label>
+                            <input type="text" th:placeholder="*{alumno.nombres}" class="form-control" readonly
+                                  /> 
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" th:placeholder="*{alumno.apellidos}" readonly
+                                  />
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Telefono</label>
+                            <input type="text" class="form-control" th:placeholder="*{alumno.telefono}" readonly
+                                  />
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Email</label>
+                            <input type="text"  class="form-control" th:placeholder="*{alumno.email}" readonly
+                                  /> 
+                        </div>
+                       
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Direccion</label>
+                            <input type="text"  class="form-control" th:placeholder="*{alumno.direccion}" readonly
+                                   /> 
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Dni</label>
+                            <input type="text"   class="form-control" th:placeholder="*{alumno.dni}" readonly
+                                  /> 
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Edad</label>
+                            <input type="number"  class="form-control" th:placeholder="*{alumno.edad}" readonly
+                                 /> 
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Sexo</label>
+                            <input type="text"  class="form-control" th:placeholder="*{alumno.sexo}" readonly
+                                 /> 
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Carrera</label>  
+                             <input type="text"  class="form-control" th:placeholder="*{alumno.carrera.nombre}" readonly
+                                 />  
+                            
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Tipo de Alumno</label>
+                           <input type="text"  class="form-control" th:placeholder="*{alumno.tipoAlumno.nombreTipo}" readonly
+                                 /> 
+                            
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <label class="form-label">Ingresante</label>
+                             <input type="text"  class="form-control" th:placeholder="*{alumno.ingresante}" readonly
+                                 /> 
+                            
+                        </div>
+                        
+                       </div> 	
+                    	</div>
+                    	<div class="col-xs-12 col-lg-6 mb-5">
+                    	 <div class="form-group row">
+                    	 	 <div class="col-sm-12 col-lg-12 mb-5">
+                            
+                          <img th:if="${#strings.length(alumno.foto) > 0}"
+                    class="img-thumbnail rounded float-left" style="max-width: 500px;"
+                    th:src="@{'/uploads/' + ${alumno.foto}}" th:alt="${alumno.foto}" />
+                        </div>
+                        <div class="col-xs-12 col-lg-6 mb-5" style="text-align: center;">
+                            <a  th:href="@{/matricula/bienvenido/}+ ${dni}">
+                                <input value="Cancelar" class="btn btn-dark"/></a>
+                        </div>
+                    	 </div>
+                    	</div>
+                    
+                    
+                        
+                        
+                    </div>
+                     
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer th:replace="layout/layoutA2 :: footer"></footer>
+</body>
+</html>

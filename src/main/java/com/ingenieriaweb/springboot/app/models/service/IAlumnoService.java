@@ -20,4 +20,5 @@ public interface IAlumnoService {
 
     public void delete(Long id);
 
+    public Alumno findByDni(String dni);
 }

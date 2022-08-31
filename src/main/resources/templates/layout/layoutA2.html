@@ -16,27 +16,7 @@
 </head>
 <body>
 <header class="header align-items-center" th:fragment="header">
-    <div class="d-flex align-items-center justify-content-between">
-        <nav>
-            <a th:href="@{/aula/listar}">Aulas</a>
-            <a th:href="@{/tarifa/listar}">Tarifas</a>
-            <a th:href="@{/profesor/listar}">Profesores</a>
-            <a th:href="@{/curso/listar}">Cursos</a>
-            <a class="logo" th:href="@{/admin}">Team</a>
-            <a th:href="@{/tipoAlumno/listar}">Tipo de Alumnos</a>
-            <a th:href="@{/alumno/listar}">Alumnos</a>
-            <a th:href="@{/area/listar}">Areas</a>
-            <a th:href="@{/carrera/listar}">Carreras</a>
-            <a th:href="@{/usuario/listar}">Usuarios</a>
-            <a th:href="@{/empleado/listar}">Empleados</a>
-            <a th:href="@{/rol/listar}">Roles</a>
-            <a th:href="@{/ciclo/listar}">Ciclos</a>
-            <a th:href="@{/matricula/listar}">Matriculas</a>
-            <a th:href="@{/matricula/aceptar}">Aceptar Matriculas</a>
-            <a th:href="@{/matriculasimulacro/listar}">Agregar Simulacros</a>
-            <a th:href="@{/logout}">Salir</a>
-        </nav>
-    </div>
+    
     <div>
         <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
         <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>

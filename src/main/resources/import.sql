@@ -12,21 +12,18 @@ insert into tipo_alumnos (nombre_tipo) values ('5to grado');
 insert into tipo_alumnos (nombre_tipo) values ('Regular');
 insert into tipo_alumnos (nombre_tipo) values ('Cepunt');
 
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Alex','Gonzales','934752460','alex12@gmail.com','549bb20f-83f4-401c-8c58-eba575cc7f5a_Ingresante3.jpg','av los laureles nro 900','71392864',18,'MASCULINO', 1, 1,'SI');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Lucho','Rodríguez','932752460','luchito@gmail.com','','av los laureles nro 500','71392864',18,'MASCULINO', 2, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Axel','Rouse','934752410','axel@gmail.com','','av los laureles nro 100','71392864',20,'MASCULINO', 3, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Ricardo','Lora','934752410','axel@gmail.com','','av los laureles nro 200','71392864',20,'MASCULINO', 3, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Beltran','Rouse','934752410','bet@gmail.com','','av los laureles nro 600','71392864',20,'MASCULINO', 3, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Luis','Gutierrez','934252460','luis@gmail.com','7d91f734-dba8-4988-9324-bae241ed34df_Ingresante1.jpg','av los laureles nro 500','71392864',21,'MASCULINO', 1, 3,'SI');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Julieta','Ramos','934752410','jul@gmail.com','','av los laureles nro 700','71392864',20,'FEMENINO', 3, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Jullisa','Castañeda','934752410','julissa@gmail.com','','av los laureles nro 200','71392864',20,'FEMENINO', 3, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Leandro','Villarroel','934752410','lea@gmail.com','','av los laureles nro 500','71392864',20,'MASCULINO', 3, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Ricardo','Villarroel','934752410','ric@gmail.com','','av los laureles nro 700','71392864',20,'MASCULINO', 3, 3,'NO');
-insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Jesus','Cárdenas','934152460','jesus@gmail.com','66452156-0e29-413b-86d4-c7a9efe88c3c_Ingresante2.jpg','av los laureles nro 500','71392864',22,'MASCULINO', 1, 3,'SI');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Alex','Gonzales','934752460','alex12@gmail.com','549bb20f-83f4-401c-8c58-eba575cc7f5a_Ingresante3.jpg','av los laureles nro 900','12345678',18,'MASCULINO', 1, 1,'SI');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Lucho','Rodríguez','932752460','luchito@gmail.com','alumno1.PNG','av los laureles nro 500','23456789',18,'MASCULINO', 2, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Fernanda','Rouse','934752410','axel@gmail.com','alumna1.PNG','av los laureles nro 100','34567890',20,'FEMENINO', 3, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Ricardo','Lora','934752410','axel@gmail.com','alumno2.PNG','av los laureles nro 200','45678901',20,'MASCULINO', 3, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('REBECA','BELTRAN','934752410','bet@gmail.com','alumna2.PNG','av los laureles nro 600','56789012',20,'FEMENINO', 3, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Luis','Gutierrez','934252460','luis@gmail.com','7d91f734-dba8-4988-9324-bae241ed34df_Ingresante1.jpg','av los laureles nro 500','67890123',21,'MASCULINO', 1, 3,'SI');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Julieta','Ramos','934752410','jul@gmail.com','alumna3.PNG','av los laureles nro 700','71392864',20,'FEMENINO', 3, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Jullisa','Castañeda','934752410','julissa@gmail.com','alumna4.PNG','av los laureles nro 200','78901234',20,'FEMENINO', 3, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Leandro','Villarroel','934752410','lea@gmail.com','alumno3.PNG','av los laureles nro 500','89012345',20,'MASCULINO', 3, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Ricardo','Villarroel','934752410','ric@gmail.com','alumno4.PNG','av los laureles nro 700','90123456',20,'MASCULINO', 3, 3,'NO');
+insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Jesus','Cárdenas','934152460','jesus@gmail.com','66452156-0e29-413b-86d4-c7a9efe88c3c_Ingresante2.jpg','av los laureles nro 500','01234567',22,'MASCULINO', 1, 3,'SI');
 
-insert into roles (rol, descripcion) values ('administrador','con acceso a todos los campos');
-insert into roles (rol, descripcion) values ('empleado','con acceso a las vistas para empleado');
-insert into roles (rol, descripcion) values ('alumno','con acceso a las vistas de alumno');
 
 insert into ciclos (ciclo, anio) values ('verano',2022);
 insert into ciclos (ciclo, anio) values ('semestral I',2022);
@@ -82,3 +79,9 @@ insert into simulacros (nombre,fecha) values ('Simulacro AREA "D"','2022-08-06')
 
 insert into matriculasimulacro (matricula_id,simulacro_id,pcorrecta,pincorrecta,nota) values (1,1,30,5,115);
 
+INSERT INTO `roles` (id,roles) VALUES (1,'ROLE_ADMIN');
+INSERT INTO `roles` (id,roles) VALUES (2,'ROLE_ALUMNO');
+INSERT INTO `users` (id, username, password) VALUES (1, 'admin', '$2a$10$EqKcp1WFKVQISheBxkQJoOqFbsWDzGJXRz/tjkGq85IZKJJ1IipYi');
+INSERT INTO `users` (id, username, password) VALUES (2, 'alumno', '$2a$10$EqKcp1WFKVQISheBxkQJoOqFbsWDzGJXRz/tjkGq85IZKJJ1IipYi');
+INSERT INTO `users_roles` (user_id, role_id) VALUES (1, 1);
+INSERT INTO `users_roles` (user_id, role_id) VALUES (2, 2);

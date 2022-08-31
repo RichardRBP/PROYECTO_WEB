@@ -27,6 +27,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.ingenieriaweb.springboot.app.models.entity.Alumno;
+import com.ingenieriaweb.springboot.app.models.entity.Dni;
 import com.ingenieriaweb.springboot.app.models.entity.Matricula;
 import com.ingenieriaweb.springboot.app.models.entity.Tarifa;
 import com.ingenieriaweb.springboot.app.models.service.IAlumnoService;
@@ -246,5 +247,89 @@ public class MatriculaController {
     	exporter.exportar(response);
     }
     
+    @GetMapping(value = "/bienvenido")
+    public String Bien(@Valid Dni dni, Map<String, Object> model) {
+    	
+    	Alumno alumno = null;
+    	String dni2 = dni.getDni(); 
+        alumno = alumnoService.findByDni(dni2);
+        
+ 
+        model.put("alumno", alumno);
+        model.put("dni", dni.getDni());
+        model.put("titulo", "BIENVENIDO");
+        return "alumno/bienvenido2";
+    }
     
+    @GetMapping(value = "/bienvenido/{dni}")
+    public String Bien(@PathVariable(value = "dni") String dni, Map<String, Object> model, RedirectAttributes flash) {
+    	
+    	//Alumno alumno = null;
+      Alumno  alumno = alumnoService.findByDni(dni);
+         
+        if (alumno == null) {
+            flash.addFlashAttribute("error", "Alumno no registrado en la academia");
+            return "redirect:/alumno/alumnos";
+        }
+ 
+        model.put("alumno", alumno);
+        model.put("dni", dni);
+        model.put("titulo", "BIENVENIDO");
+        return "alumno/bienvenido2";
+    }
+    
+    @GetMapping(value = "/formAlumno/{dni}")
+    public String crearMA(@PathVariable(value = "dni") String dni, Map<String, Object> model) {
+    	
+    	Alumno alumno = null;
+        List<Tarifa> tarifas = profesorService.findAllT();
+        alumno = alumnoService.findByDni(dni);
+        
+
+        Matricula matricula = new Matricula();
+        model.put("matricula", matricula);
+        model.put("alumno", alumno);
+        model.put("dni", dni);
+        model.put("tarifas", tarifas);
+        model.put("titulo", "Formulario de Matricula");
+        return "matricula/formAlumno";
+    }
+    
+    @RequestMapping(value = "/formAlumno", method = RequestMethod.POST)
+    public String guardarMA(@Valid Matricula matricula, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) {
+        List<Tarifa> tarifas = profesorService.findAllT();
+        Alumno alumno = alumnoService.findOne(matricula.getAlumno().getId());
+        if (result.hasErrors()) {
+            model.addAttribute("tarifas", tarifas);
+            model.addAttribute("alumno", alumno);
+            model.addAttribute("titulo", "Formulario de Matricula");
+            return "/matricula/formAlumno";
+        }
+      
+        if (!foto.isEmpty()) {
+
+            if (matricula.getId() != null && matricula.getId() > 0 && matricula.getFoto() != null
+                    && matricula.getFoto().length() > 0) {
+
+                uploadFileService.delete(matricula.getFoto());
+            }
+
+            String uniqueFilename = null;
+            try {
+                uniqueFilename = uploadFileService.copy(foto);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            //flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
+
+            matricula.setFoto(uniqueFilename);
+        }
+        String mensajeFlash = (matricula.getId() != null) ? "Matricula Registrada con éxito!" : "Matricula Registrada con éxito!";
+        MatriculaService.save(matricula);
+        status.setComplete();
+        flash.addFlashAttribute("success", mensajeFlash);
+        return "redirect:/matricula/bienvenido/"+alumno.getDni();
+    }
 }
