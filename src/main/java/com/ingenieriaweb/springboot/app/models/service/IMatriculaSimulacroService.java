@@ -16,5 +16,6 @@ public interface IMatriculaSimulacroService {
     public void save(MatriculaSimulacro matriculasimulacro);
 
     public void delete(Long id);
-
+    
+    public List<MatriculaSimulacro> findByAlumno(String id);
 }

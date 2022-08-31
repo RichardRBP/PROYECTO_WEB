@@ -42,5 +42,10 @@ public class MatriculaSimulacroServiceImpl implements IMatriculaSimulacroService
     public void delete(Long id) {
         MatriculaSimulacroDao.deleteById(id);
     }
-
+    
+    @Override
+	public List<MatriculaSimulacro> findByAlumno(String id) {
+		// TODO Auto-generated method stub
+		return  (List<MatriculaSimulacro>) MatriculaSimulacroDao.findByAlumno(id);
+	}
 }

@@ -3,8 +3,10 @@ package com.ingenieriaweb.springboot.app.controllers;
 import com.ingenieriaweb.springboot.app.models.entity.Alumno;
 import com.ingenieriaweb.springboot.app.models.entity.Dni;
 import com.ingenieriaweb.springboot.app.models.entity.Matricula;
+import com.ingenieriaweb.springboot.app.models.entity.MatriculaSimulacro;
 import com.ingenieriaweb.springboot.app.models.entity.Profesor;
 import com.ingenieriaweb.springboot.app.models.service.IAlumnoService;
+import com.ingenieriaweb.springboot.app.models.service.IMatriculaSimulacroService;
 import com.ingenieriaweb.springboot.app.models.service.IProfesorService;
 import com.ingenieriaweb.springboot.app.models.service.ITipoAlumnoService;
 import com.ingenieriaweb.springboot.app.models.service.IUploadFileService;
@@ -55,6 +57,9 @@ public class AlumnoController {
     
     @Autowired
     private IUploadFileService uploadFileService;
+    
+    @Autowired
+    private IMatriculaSimulacroService matriculasimulacroService;
 
 
     @GetMapping(value = "/uploads/{filename:.+}")
@@ -226,5 +231,22 @@ public class AlumnoController {
         return "alumno/Datos";
     }
     
-    
+    @GetMapping(value = "/matriculas/{dni}")
+    public String verNotasAlumno(@PathVariable(value = "dni") String dni, Map<String, Object> model, RedirectAttributes flash) {
+
+    	 Alumno alumno = alumnoService.findByDni(dni);
+    	 
+    	 
+         List<MatriculaSimulacro> matriculas = matriculasimulacroService.findByAlumno(dni);
+        
+        if (matriculas == null) {
+            flash.addFlashAttribute("error", "El alumno no existe en la base de datos");
+            return "redirect:/matricula/bienvenido/+${dni}";
+        }
+
+        model.put("notasmatriculas", matriculas);
+        model.put("alumno", alumno);
+        model.put("dni", dni);
+        return "alumno/matriculas";
+    }
 }

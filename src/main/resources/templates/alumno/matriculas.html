@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layoutA2 :: head"></head>
+<body>
+<div class="d-flex align-items-center justify-content-between">
+        <nav>
+           <a th:href="@{/matricula/bienvenido/}+ ${dni}">Inicio</a>
+            <a th:href="@{/matricula/formAlumno/}+ ${dni}">Matricula</a>
+            <a th:href="@{/alumno/matriculas/}+ ${dni}">Notas</a>
+             <a th:href="@{/alumno/misdatos/}+ ${dni}">Mis Datos</a>
+            
+            <a th:href="@{/alumno/alumnos}">Salir</a>
+        </nav>
+    </div>
+<header th:replace="layout/layoutA2 :: header"></header>
+<div class="banner-alumno">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header">
+           
+        </div>
+        <table class="table table-dark table-hover center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nota</th>
+                <th>Preguntas Correctas</th> 
+                <th>Preguntas Incorrectas</th>
+                <th>Turno</th>
+                <th>Simulacro</th>
+                <th>Ciclo</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="matricula: ${notasmatriculas}">
+                <td th:text="${matricula.id}"></td>
+                <td th:text="${matricula.nota}"></td>
+                <td th:text="${matricula.pcorrecta}"></td>  
+                <td th:text="${matricula.pincorrecta}"></td>  
+                 <td th:text="${matricula.matricula.turno}"></td>  
+                 <td th:text="${matricula.simulacro.nombre}"></td>  
+                 <td th:text="${matricula.matricula.tarifa.ciclo.ciclo}"></td>  
+                
+                 
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+<footer th:replace="layout/layoutA2 :: footer"></footer>
+</body>
+</html>
