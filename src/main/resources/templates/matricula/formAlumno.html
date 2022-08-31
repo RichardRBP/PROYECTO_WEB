@@ -7,7 +7,6 @@
         <nav>
            <a th:href="@{/matricula/bienvenido/}+ ${dni}">Inicio</a>
             <a th:href="@{/matricula/formAlumno/}+ ${dni}">Matricula</a>
-            <a th:href="@{/detalle/listar}">Notas</a>
               <a th:href="@{/alumno/misdatos/}+ ${dni}">Mis Datos</a>
             <a th:href="@{/alumno/alumnos}">Salir</a>
         </nav>
@@ -86,7 +85,7 @@
                             <label class="form-label">Turno</label>
                             <select name="turno" id="turno" class="form-control"
                                     th:errorclass="'form-control alert-danger'">
-                                <option th:field="*{turno}" value="MAï¿½ANA">MAÑANA</option>
+                                <option th:field="*{turno}" value="MAï¿½ANA">MAï¿½ANA</option>
                                 <option th:field="*{turno}" value="TARDE">TARDE</option>
                                 <option th:field="*{turno}" value="NOCHE">NOCHE</option>
                             </select>

@@ -202,8 +202,9 @@ public class AlumnoController {
     
     @GetMapping(value = "/alumnos")
     public String vistaAlumno(Map<String, Object> model) {
- 
-        Dni dni = new Dni(); 
+    	Dni dni = new Dni(); 
+    	
+        
         model.put("titulo", "Ingresar como Alumno");
         model.put("dni", dni); 
         return "alumno/bienvenido";

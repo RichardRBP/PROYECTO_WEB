@@ -248,11 +248,14 @@ public class MatriculaController {
     }
     
     @GetMapping(value = "/bienvenido")
-    public String Bien(@Valid Dni dni, Map<String, Object> model) {
+    public String Bien(@Valid Dni dni, Map<String, Object> model, RedirectAttributes flash) {
     	
-    	Alumno alumno = null;
-    	String dni2 = dni.getDni(); 
-        alumno = alumnoService.findByDni(dni2);
+    	String dni2 = dni.getDni();
+    	Alumno alumno = alumnoService.findByDni(dni.getDni());
+        if (alumno == null) {
+            flash.addFlashAttribute("error", "El alumno no existe en la base de datos");
+            return "redirect:/alumno/alumnos";
+        }
         
  
         model.put("alumno", alumno);
