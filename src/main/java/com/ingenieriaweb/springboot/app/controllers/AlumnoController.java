@@ -94,7 +94,7 @@ public class AlumnoController {
     @GetMapping(value = "/listar")
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
-        Pageable pageRequest = PageRequest.of(page, 5);
+        Pageable pageRequest = PageRequest.of(page, 4);
 
         Page<Alumno> alumno = profesorService.findAllAlu(pageRequest);
         PageRender<Alumno> pageRender = new PageRender<Alumno>("/alumno/listar", alumno);
@@ -214,8 +214,8 @@ public class AlumnoController {
 
         Alumno alumno = alumnoService.findByDni(dni);
         if (alumno == null) {
-            flash.addFlashAttribute("error", "El alumno no existe en la base de datos");
-            return "redirect:/alumno/listar";
+            flash.addFlashAttribute("error", "Alumno no registrado en la academia");
+            return "redirect:/alumno/alumnos";
         }
 
         model.put("alumno", alumno);

@@ -28,11 +28,17 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/index","/","/images/**","/css/**","/csss/**","/js/**","/login/**","/img/**").permitAll()
+                .antMatchers("/index","/","/images/**","/css/**","/csss/**","/js/**","/login/**","/**/uploads/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .permitAll()
-                .and().logout();
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .permitAll()
+                .and()
+            .csrf();;
     }
 
         
