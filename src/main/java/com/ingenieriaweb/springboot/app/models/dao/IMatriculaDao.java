@@ -15,6 +15,5 @@ public interface IMatriculaDao extends PagingAndSortingRepository<Matricula, Lon
     @Query("select m from Matricula m where m.estado = 'ACEPTADA' ")
     public List<Matricula> findAllAceptadas();
 
-    
 
 }

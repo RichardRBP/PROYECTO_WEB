@@ -7,6 +7,14 @@ import org.springframework.data.domain.Pageable;
 
 public interface IMatriculaSimulacroService {
 
+    public List<MatriculaSimulacro> findAll();
+
+    public Page<MatriculaSimulacro> findAll(Pageable pageable);
+
     public MatriculaSimulacro findOne(Long id);
+
+    public void save(MatriculaSimulacro matriculasimulacro);
+
+    public void delete(Long id);
 
 }
