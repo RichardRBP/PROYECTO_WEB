@@ -24,9 +24,6 @@ insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, 
 insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Ricardo','Villarroel','934752410','ric@gmail.com','','av los laureles nro 700','71392864',20,'MASCULINO', 3, 3,'NO');
 insert into alumnos (nombres, apellidos, telefono, email, foto, direccion, dni, edad, sexo, carrera_id, tipo_alumno_id,ingresante) values ('Jesus','Cárdenas','934152460','jesus@gmail.com','66452156-0e29-413b-86d4-c7a9efe88c3c_Ingresante2.jpg','av los laureles nro 500','71392864',22,'MASCULINO', 1, 3,'SI');
 
-insert into roles (rol, descripcion) values ('administrador','con acceso a todos los campos');
-insert into roles (rol, descripcion) values ('empleado','con acceso a las vistas para empleado');
-insert into roles (rol, descripcion) values ('alumno','con acceso a las vistas de alumno');
 
 insert into ciclos (ciclo, anio) values ('verano',2022);
 insert into ciclos (ciclo, anio) values ('semestral I',2022);
@@ -82,3 +79,6 @@ insert into simulacros (nombre,fecha) values ('Simulacro AREA "D"','2022-08-06')
 
 insert into matriculasimulacro (matricula_id,simulacro_id,pcorrecta,pincorrecta,nota) values (1,1,30,5,115);
 
+INSERT INTO `roles` (id,roles) VALUES (1,'ROLE_ADMIN');
+INSERT INTO `users` (id, username, password) VALUES (1, 'admin', '$2a$10$EqKcp1WFKVQISheBxkQJoOqFbsWDzGJXRz/tjkGq85IZKJJ1IipYi');
+INSERT INTO `users_roles` (user_id, role_id) VALUES (1, 1);

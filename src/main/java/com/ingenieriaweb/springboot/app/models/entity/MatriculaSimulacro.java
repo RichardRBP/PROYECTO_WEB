@@ -32,9 +32,9 @@ public class MatriculaSimulacro implements Serializable {
     @JoinColumn(name = "matricula_id")
     private Matricula matricula;
 
-//	@JsonBackReference
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	private Simulacro simulacro;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Simulacro simulacro;
 
     public Long getId() {
         return id;
@@ -80,12 +80,12 @@ public class MatriculaSimulacro implements Serializable {
         this.matricula = matricula;
     }
 
-//    public Simulacro getSimulacro() {
-//        return simulacro;
-//    }
-//
-//    public void setSimulacro(Simulacro simulacro) {
-//        this.simulacro = simulacro;
-//    }
+  public Simulacro getSimulacro() {
+        return simulacro;
+    }
+
+    public void setSimulacro(Simulacro simulacro) {
+        this.simulacro = simulacro;
+    }
 
 }

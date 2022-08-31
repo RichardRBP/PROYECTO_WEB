@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.ingenieriaweb.springboot.app.models.dao.IRolDao;
-import com.ingenieriaweb.springboot.app.models.entity.Rol;
+import com.ingenieriaweb.springboot.app.models.entity.Role;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,22 +19,22 @@ public class RolServiceImpl  implements IRolService{
     private IRolDao rolDao;
 
     @Override
-    public List<Rol> findAll() {
+    public List<Role> findAll() {
         // TODO Auto-generated method stub
-        return (List<Rol>) rolDao.findAll();
+        return (List<Role>) rolDao.findAll();
     }
 
     
 
     @Override
-    public Page<Rol> findAll(Pageable pageable) {
+    public Page<Role> findAll(Pageable pageable) {
         return rolDao.findAll(pageable);
     }
 
 
 
     @Override
-    public Rol findOne(Long id) {
+    public Role findOne(Long id) {
         // TODO Auto-generated method stub
         return rolDao.findById(id).orElse(null);
     }
@@ -42,7 +42,7 @@ public class RolServiceImpl  implements IRolService{
 
 
     @Override
-    public void save(Rol rol) {
+    public void save(Role rol) {
         rolDao.save(rol);
         
     }
